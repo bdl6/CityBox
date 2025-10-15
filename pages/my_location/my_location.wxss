@@ -1,0 +1,15 @@
+/* my_location.wxss */
+page {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  position: absolute;
+  top: env(safe-area-inset-top, 0); /* 适配刘海屏 */
+  left: 0;
+  right: 0;
+}
+

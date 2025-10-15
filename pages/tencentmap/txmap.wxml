@@ -1,0 +1,31 @@
+<!--地图容器-->
+<map id="myMap"
+wx:if="{{hasLocation}}"
+   markers="{{markers}}"
+   style="width: 100%; height: 885rpx; position: relative; left: 0rpx; top: 0rpx; display: block; box-sizing: border-box"
+   longitude="{{longitude}}"
+   latitude="{{latitude}}"
+   scale="{{scale}}"
+   show-location
+   enable-zoom
+   enable-scroll
+   enable-rotate
+   enable-overlooking
+   enable-traffic
+   enable-poi
+   controls="{{controls}}"
+   include-points="{{includePoints}}"
+   bindmarkertap="onMarkerTap"
+  >
+</map>
+<block wx:else>
+  位置加载中
+</block>
+<!--搜索按钮组-->
+<view class="search-buttons">
+  <button bindtap="nearby_search" data-keyword="KTV">KTV</button>
+  <button bindtap="nearby_search" data-keyword="KFC">KFC</button>
+  <button bindtap="nearby_search" data-keyword="餐厅">餐厅</button>
+  <button bindtap="nearby_search" data-keyword="酒店">酒店</button>
+  <button bindtap="nearby_search" data-keyword="超市">超市</button>
+</view>

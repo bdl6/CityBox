@@ -1,0 +1,6 @@
+
+<view class="map_box">
+  <map id="navi_map" longitude="{{center.longitude}}" latitude="{{center.latitude}}"  markers="{{markers}}" ></map>
+</view>
+
+
