@@ -1,0 +1,42 @@
+<!-- 首页（入口页） -->
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <text class="header-title">城市盲盒</text>
+    <view class="header-divider"></view>
+  </view>
+  
+  <!-- 背景层：淡米色背景 -->
+  <view class="background-layer"></view>
+  
+  <!-- 中间文字层：随性的城市线索 -->
+  <view class="middle-section">
+    <view class="clue-container">
+      <text class="clue-text">在熟悉的城市</text>
+      <text class="clue-text">发现陌生的惊喜</text>
+      <text class="clue-text">盲盒式步行探索</text>
+      <text class="clue-text">解锁身边的小众宝藏</text>
+    </view>
+  </view>
+
+  <!-- 功能入口区 -->
+  <view class="entry-section">
+    <button class="explore-btn" bindtap="startExplore">开始探索</button>
+    <text class="hint-text">已为你准备 100 + 隐藏咖啡馆、老书店、特色小店</text>
+  </view>
+
+  <!-- 底部辅助区 -->
+  <view class="footer-section">
+    <view class="footer-item left" bindtap="goToMyExploration">
+      <text class="footer-text">我的探索</text>
+    </view>
+    <view class="footer-item right" bindtap="goToAbout">
+      <text class="footer-text">关于我们</text>
+    </view>
+  </view>
+  
+  <!-- 爆炸碎片效果容器 -->
+  <view class="particle-container" wx:if="{{showParticles}}">
+    <view class="particle" wx:for="{{particles}}" wx:key="index" style="left: {{item.left}}px; top: {{item.top}}px; width: {{item.size}}px; height: {{item.size}}px; background: {{item.color}}; animation-delay: {{item.delay}}ms;"></view>
+  </view>
+</view>

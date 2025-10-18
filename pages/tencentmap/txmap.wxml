@@ -1,6 +1,7 @@
 <!--地图容器-->
 <map id="myMap"
 wx:if="{{hasLocation}}"
+   key="{{mapKey}}"
    markers="{{markers}}"
    style="width: 100%; height: 885rpx; position: relative; left: 0rpx; top: 0rpx; display: block; box-sizing: border-box"
    longitude="{{longitude}}"
@@ -16,7 +17,9 @@ wx:if="{{hasLocation}}"
    controls="{{controls}}"
    include-points="{{includePoints}}"
    bindmarkertap="onMarkerTap"
+   polyline="polyline"
   >
+  
 </map>
 <block wx:else>
   位置加载中
@@ -28,4 +31,36 @@ wx:if="{{hasLocation}}"
   <button bindtap="nearby_search" data-keyword="餐厅">餐厅</button>
   <button bindtap="nearby_search" data-keyword="酒店">酒店</button>
   <button bindtap="nearby_search" data-keyword="超市">超市</button>
+</view>
+
+<!--POI操作按钮组-->
+<view class="poi-actions">
+  <button bindtap="clearAllPOI">清除所有</button>
+  <button bindtap="randomNavigate">随机导航</button>
+</view>
+<!-- 导航步骤面板 -->
+<view class="steps-container" wx:if="{{navigationSteps.length > 0}}">
+  <view class="steps-header">
+    <text class="steps-title">导航指引</text>
+    <text class="steps-summary">共{{navigationSteps.length}}步 · {{distance}}</text>
+  </view>
+  
+  <scroll-view class="steps-list" scroll-y>
+    <view class="step-item" wx:for="{{navigationSteps}}" wx:key="index">
+      <view class="step-number">{{index + 1}}</view>
+      <view class="step-content">
+        <view class="step-instruction">{{item.instruction}}</view>
+        <view class="step-details">
+          <text class="step-distance">{{item.distance}}</text>
+          <text class="step-duration">{{item.duration}}</text>
+          <text class="step-road">{{item.road}}</text>
+        </view>
+      </view>
+      
+    </view>
+  </scroll-view>
+  
+  <view class="steps-footer">
+    <button class="close-btn" bindtap="clearAllPOI">结束导航</button>
+  </view>
 </view>

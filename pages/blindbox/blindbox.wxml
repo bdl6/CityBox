@@ -1,0 +1,27 @@
+<!-- 盲盒详情页 -->
+<view class="container">
+  <!-- 盲盒卡片 -->
+  <view class="blindbox-card animation-slide-up">
+    <image class="blindbox-icon" src="/images/blindbox-icon.png"></image>
+    <text class="card-title">你的盲盒已生成！</text>
+    <view class="card-info">
+      <text class="distance">距离你约 {{distance}} 米</text>
+      <text class="tags">标签：{{tags}}</text>
+    </view>
+    <text class="hint-text">不告诉你是什么，但相信你会喜欢</text>
+  </view>
+
+  <!-- 操作按钮区 -->
+  <view class="actions">
+    <button class="action-btn reset-btn" bindtap="regenerate">重新生成</button>
+    <button class="action-btn navigate-btn" bindtap="startNavigation">
+      <image class="navigate-icon" src="/images/navigate-arrow.png"></image>
+      开始导航
+    </button>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-hint">
+    <text class="hint-text">到达后自动解锁地点名称和特色</text>
+  </view>
+</view>

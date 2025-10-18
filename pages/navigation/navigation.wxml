@@ -1,0 +1,42 @@
+<!-- 导航页 -->
+<view class="container">
+  <!-- 顶部状态栏 -->
+  <view class="status-bar">
+    <text class="status-text">导航中…</text>
+    <view class="exit-btn" bindtap="exitNavigation">
+      <text class="exit-text">退出</text>
+    </view>
+  </view>
+
+  <!-- 方向指引区 -->
+  <view class="direction-section">
+    <image 
+      class="direction-arrow" 
+      src="/images/arrow.png" 
+      style="transform: rotate({{arrowRotation}}deg);"
+    ></image>
+    <text class="direction-text">向{{direction}}方向前进</text>
+  </view>
+
+  <!-- 距离显示区 -->
+  <view class="distance-section">
+    <text class="distance-number">{{remainingDistance}}</text>
+    <text class="distance-unit">米</text>
+    <text class="distance-label">距离目标</text>
+    
+    <!-- 进度条 -->
+    <view class="progress-container">
+      <view class="progress-background"></view>
+      <view class="progress-bar" style="width: {{progressWidth}};"></view>
+    </view>
+    <text class="progress-text">{{progress}}%</text>
+  </view>
+
+  <!-- 底部辅助区 -->
+  <view class="footer-section">
+    <view class="refresh-btn" bindtap="refreshLocation">
+      <image class="refresh-icon" src="/images/refresh.png"></image>
+      <text class="refresh-text">刷新位置</text>
+    </view>
+  </view>
+</view>

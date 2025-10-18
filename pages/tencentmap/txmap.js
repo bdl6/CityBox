@@ -16,7 +16,7 @@ Page({
     markers: [],        // 存储用户位置和POI点标记
     poiMarkers: [],     // 单独存储POI点标记
     currentKeyword: null, // 当前显示的POI类型
-    
+    polyline:[]
   },
 
   onLoad() {
@@ -184,16 +184,13 @@ handleLocationError(err) {
           });
         }
         
-        // 更新POI标记
+        // 清空原有POI点，只保留用户位置标记
+        const userLocationMarker = _this.data.markers.find(m => m.id === 0);
         _this.setData({
-          poiMarkers: poiMarkers
+          poiMarkers: poiMarkers,
+          markers: userLocationMarker ? [userLocationMarker, ...poiMarkers] : [...poiMarkers]
         });
         
-        // 合并所有标记（用户位置+POI点）
-        const allMarkers = [..._this.data.markers, ...poiMarkers];
-        _this.setData({
-          markers: allMarkers
-        });
       },
       fail: function (res) {
         console.error('POI搜索失败:', res);
@@ -206,6 +203,197 @@ handleLocationError(err) {
         }
       }
     });
+  },
+
+  
+
+  // 清除所有POI点
+  clearAllPOI: function() {
+    wx.showLoading({
+      title: '清除中...'
+    });
+    
+    // 确保保留用户位置标记
+    const userMarker = this.data.markers.find(m => m.id === 0) || [];
+    const newMarkers = userMarker ? [userMarker] : [];
+    
+    // 强制更新数据
+    this.setData({
+      markers: newMarkers,
+      poiMarkers: [],
+      polyline: []
+    }, () => {
+      console.log('清除后数据状态:', {
+        markers: this.data.markers,
+        poiMarkers: this.data.poiMarkers
+      });
+      
+      // 双重确保地图更新
+      this.setData({
+        refreshMap: Date.now(),
+        'mapKey': Date.now() // 强制重新渲染地图组件
+      }, () => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '已清除所有POI点',
+          icon: 'success'
+        });
+        
+        // 调试用 - 打印当前地图上的标记点
+        setTimeout(() => {
+          console.log('当前地图标记点:', this.data.markers);
+          console.log('当前POI标记点:', this.data.poiMarkers);
+        }, 500);
+      });
+    });
+  },
+
+  // 随机导航相关变量
+  navigationInterval: null,
+  refreshCount: 0,
+  
+  // 随机选择一个POI点导航
+  randomNavigate: function() {
+    const that = this;
+    if (this.data.poiMarkers.length === 0) {
+      wx.showToast({
+        title: '没有可导航的POI点',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    wx.showLoading({
+      title: '路径规划中...'
+    });
+    
+    // 清除旧路线和定时器
+    if (this.navigationInterval) {
+      clearInterval(this.navigationInterval);
+      this.navigationInterval = null;
+    }
+    
+    const randomIndex = Math.floor(Math.random() * this.data.poiMarkers.length);
+    const randomPOI = this.data.poiMarkers[randomIndex];
+    
+    // 调用路径规划
+    qqmapsdk.direction({
+      mode: 'driving',
+      from: `${this.data.latitude},${this.data.longitude}`,
+      to: `${randomPOI.latitude},${randomPOI.longitude}`,
+      success: function(res) {
+        wx.hideLoading();
+        console.log('路径规划结果:', res);
+        
+        if (!res.result || !res.result.routes || res.result.routes.length === 0) {
+          wx.showToast({
+            title: '未找到可行路线',
+            icon: 'none'
+          });
+          return;
+        }
+        
+        const route = res.result.routes[0];
+        const distance = (route.distance / 1000).toFixed(1) + '公里';
+        
+        // 处理polyline坐标点 - 添加数据验证
+        const points = [];
+        const coords = route.polyline;
+        for (let i = 0; i < coords.length; i++) {
+          const lat = Number(coords[i].lat);
+          const lng = Number(coords[i].lng);
+          if (!isNaN(lat) && !isNaN(lng)) {
+            points.push({
+              latitude: lat,
+              longitude: lng
+            });
+          } else {
+            console.warn('忽略无效坐标点:', coords[i]);
+          }
+        }
+        
+        if (points.length === 0) {
+          wx.showToast({
+            title: '无效路线数据',
+            icon: 'none'
+          });
+          return;
+        }
+        
+        // 提取导航步骤信息
+        const steps = route.steps.map(step => ({
+          instruction: step.instruction,
+          distance: (step.distance / 1000).toFixed(1) + '公里',
+          duration: Math.ceil(step.duration / 60) + '分钟',
+          road: step.road_name || '无名道路',
+          direction: step.direction
+        }));
+
+        that.setData({
+          polyline: [{
+            points: points,
+            color: '#0081FF',
+            width: 6,
+            dottedLine: false,
+            arrowLine: true
+          }],
+          distance: distance,
+          destination: randomPOI,
+          navigationSteps: steps // 保存导航步骤
+        }, () => {
+          console.log('polyline设置完成:', that.data.polyline);
+          // 开始模拟位置更新
+          that.simulateNavigation(points);
+        });
+      },
+      fail: function(err) {
+        wx.hideLoading();
+        console.error('路径规划失败:', err);
+        wx.showToast({
+          title: '路径规划失败',
+          icon: 'none'
+        });
+      }
+    });
+  },
+  
+  // 模拟导航位置更新
+  simulateNavigation: function(points) {
+    const that = this;
+    let currentIndex = 0;
+    this.refreshCount = 0;
+    
+    this.navigationInterval = setInterval(() => {
+      if (currentIndex >= points.length - 1) {
+        clearInterval(this.navigationInterval);
+        wx.showToast({ title: '已到达目的地', icon: 'success' });
+        return;
+      }
+      
+      // 每5次更新移动一个点
+      if (this.refreshCount % 5 === 0) {
+        currentIndex++;
+        const newPosition = points[currentIndex];
+        
+        // 更新当前位置标记
+        const newMarkers = [...that.data.markers.filter(m => m.id === 0)];
+        newMarkers[0].latitude = newPosition.latitude;
+        newMarkers[0].longitude = newPosition.longitude;
+        
+        // 计算剩余距离
+        const remainingPoints = points.slice(currentIndex);
+        const remainingDistance = (remainingPoints.length * 0.01).toFixed(1) + '公里';
+        
+        that.setData({
+          markers: newMarkers,
+          longitude: newPosition.longitude,
+          latitude: newPosition.latitude,
+          distance: remainingDistance
+        });
+      }
+      
+      that.refreshCount++;
+    }, 500); // 每0.5秒更新一次
   },
 
   // 标记点点击事件

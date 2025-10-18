@@ -1,0 +1,170 @@
+/* 盲盒设置页样式 */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.nav-left, .nav-right {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.nav-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 内容区域 */
+.content {
+  flex: 1;
+  padding: 30rpx;
+}
+
+/* 区块样式 */
+.section {
+  margin-bottom: 50rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.section-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 30rpx;
+}
+
+/* 范围设置 */
+.range-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.range-label {
+  font-size: 24rpx;
+  color: #666;
+  width: 80rpx;
+}
+
+.range-slider {
+  flex: 1;
+  margin: 0 20rpx;
+}
+
+.current-range {
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ff6b00;
+}
+
+/* 标签选择 */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tag {
+  width: 48%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.tag-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 15rpx;
+}
+
+.tag-text {
+  font-size: 26rpx;
+}
+
+/* 未选中标签 */
+.tag-unselected {
+  border: 2rpx solid #ddd;
+  background-color: #f8f8f8;
+  color: #666;
+}
+
+/* 选中标签 */
+.tag-selected {
+  color: #fff;
+  border: 2rpx solid;
+}
+
+.art {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.food {
+  background-color: #ff9800;
+  border-color: #ff9800;
+}
+
+.retro {
+  background-color: #795548;
+  border-color: #795548;
+}
+
+.nature {
+  background-color: #8bc34a;
+  border-color: #8bc34a;
+}
+
+.market {
+  background-color: #9c27b0;
+  border-color: #9c27b0;
+}
+
+/* 底部操作区 */
+.footer {
+  padding: 20rpx;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 -2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.generate-btn {
+  width: 80%;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}

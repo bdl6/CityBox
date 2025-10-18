@@ -1,0 +1,33 @@
+<!-- 我的探索页 -->
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <text class="title">我的探索日记</text>
+    <text class="subtitle">已解锁 {{explorationCount}} 个宝藏地点</text>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="content" wx:if="{{explorations.length > 0}}">
+    <view 
+      class="exploration-card" 
+      wx:for="{{explorations}}" 
+      wx:key="id"
+      bindtap="goToDiscovery"
+      data-id="{{item.id}}"
+    >
+      <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="card-content">
+        <text class="card-title">{{item.name}}</text>
+        <text class="card-date">{{item.date}}</text>
+        <text class="card-description">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <image class="empty-icon" src="/images/cry-face.png"></image>
+    <text class="empty-text">还没有探索记录哦</text>
+    <button class="explore-btn" bindtap="goToHome">去探索</button>
+  </view>
+</view>

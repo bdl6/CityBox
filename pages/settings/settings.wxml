@@ -1,0 +1,80 @@
+<!-- 盲盒设置页 -->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="navbar">
+    <view class="nav-left" bindtap="goBack">
+      <image class="nav-icon" src="/images/back.png"></image>
+    </view>
+    <text class="nav-title">定制你的盲盒</text>
+    <view class="nav-right" bindtap="showHelp">
+      <image class="nav-icon" src="/images/help.png"></image>
+    </view>
+  </view>
+
+  <scroll-view class="content" scroll-y>
+    <!-- 范围设置区 -->
+    <view class="section">
+      <text class="section-title">探索范围</text>
+      <text class="section-desc">步行可达的距离（1-3 公里）</text>
+      <view class="range-container">
+        <text class="range-label">1km</text>
+        <slider class="range-slider" min="1" max="3" step="0.1" value="{{rangeValue}}" bindchange="onRangeChange" activeColor="#ff6b00" />
+        <text class="range-label">3km</text>
+      </view>
+      <text class="current-range">{{rangeValue}} 公里</text>
+    </view>
+
+    <!-- 标签选择区 -->
+    <view class="section">
+      <text class="section-title">兴趣标签</text>
+      <text class="section-desc">选择你喜欢的类型，精准匹配盲盒</text>
+      <view class="tags-container">
+        <view 
+          class="tag {{selectedTags.indexOf('文艺') !== -1 ? 'tag-selected art' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="文艺"
+        >
+          <image class="tag-icon" src="/images/brush.png"></image>
+          <text class="tag-text">文艺</text>
+        </view>
+        <view 
+          class="tag {{selectedTags.indexOf('美食') !== -1 ? 'tag-selected food' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="美食"
+        >
+          <image class="tag-icon" src="/images/fork.png"></image>
+          <text class="tag-text">美食</text>
+        </view>
+        <view 
+          class="tag {{selectedTags.indexOf('复古') !== -1 ? 'tag-selected retro' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="复古"
+        >
+          <image class="tag-icon" src="/images/camera.png"></image>
+          <text class="tag-text">复古</text>
+        </view>
+        <view 
+          class="tag {{selectedTags.indexOf('自然') !== -1 ? 'tag-selected nature' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="自然"
+        >
+          <image class="tag-icon" src="/images/leaf.png"></image>
+          <text class="tag-text">自然</text>
+        </view>
+        <view 
+          class="tag {{selectedTags.indexOf('小众市集') !== -1 ? 'tag-selected market' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="小众市集"
+        >
+          <image class="tag-icon" src="/images/flag.png"></image>
+          <text class="tag-text">小众市集</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部操作区 -->
+  <view class="footer">
+    <button class="generate-btn" bindtap="generateBlindBox">生成盲盒</button>
+  </view>
+</view>

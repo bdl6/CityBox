@@ -1,11 +1,18 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/discovery/discovery",
+    "pages/myexploration/myexploration",
+    "pages/settings/settings",
+    "pages/blindbox/blindbox",
+    "pages/navigation/navigation",
+    "pages/diary/diary",
+    
     "pages/tencentmap/txmap"
-   
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "城市盲盒",
     "navigationBarBackgroundColor": "#ffffff"
   },
   "permission": {
