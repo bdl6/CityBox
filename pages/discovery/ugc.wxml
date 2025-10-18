@@ -1,0 +1,56 @@
+<!-- UGC内容展示页 -->
+<view class="container">
+  <!-- 顶部标题区 -->
+  <view class="header-section">
+    <text class="page-title">探索日记</text>
+    <text class="place-name">地点：{{placeName}}</text>
+  </view>
+
+  <!-- 日记列表区 -->
+  <scroll-view class="diary-list" scroll-y>
+    <view wx:for="{{diaryList}}" wx:key="index" class="diary-item">
+      <!-- 用户信息 -->
+      <view class="user-info">
+        <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <view class="user-details">
+          <text class="username">{{item.username}}</text>
+          <text class="time">{{item.time}}</text>
+        </view>
+      </view>
+
+      <!-- 日记内容 -->
+      <view class="diary-content">
+        <text class="description">{{item.description}}</text>
+        <view wx:if="{{item.photos.length > 0}}" class="photos-container">
+          <image 
+            wx:for="{{item.photos}}" 
+            wx:key="index" 
+            class="diary-photo" 
+            src="{{item}}" 
+            mode="aspectFill"
+            bindtap="previewImage"
+            data-photos="{{item.photos}}"
+            data-current="{{item}}"
+          ></image>
+        </view>
+      </view>
+
+      <!-- 互动区 -->
+      <view class="interaction-section">
+        <view class="like-section" bindtap="likeDiary" data-index="{{index}}">
+          <image class="like-icon" src="{{item.liked ? '/images/liked.png' : '/images/like.png'}}"></image>
+          <text class="like-count">{{item.likeCount}}</text>
+        </view>
+        <view class="comment-section" bindtap="commentDiary" data-index="{{index}}">
+          <image class="comment-icon" src="/images/comment.png"></image>
+          <text class="comment-count">{{item.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部提示 -->
+  <view class="footer-hint">
+    <text class="hint-text">这些是其他探索者在这里留下的足迹</text>
+  </view>
+</view>

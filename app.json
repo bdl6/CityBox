@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/settings/settings",
     "pages/home/home",
     "pages/discovery/discovery",
+    "pages/discovery/ugc",
     "pages/myexploration/myexploration",
-    "pages/settings/settings",
     "pages/blindbox/blindbox",
     "pages/navigation/navigation",
     "pages/diary/diary",

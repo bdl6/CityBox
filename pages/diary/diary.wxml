@@ -1,5 +1,11 @@
 <!-- 探索日记编辑页 -->
 <view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="page-title">探索日记</text>
+    <text class="place-name" wx:if="{{placeName}}">地点：{{placeName}}</text>
+  </view>
+
   <!-- 照片上传区 -->
   <view class="photo-section">
     <text class="section-title">现场照片</text>

@@ -11,14 +11,12 @@
 
   <!-- 地点信息区 -->
   <view class="info-section">
-    <text class="place-name">街角旧书店</text>
+    <text class="place-name">{{place.title || '街角旧书店'}}</text>
     <view class="place-tags">
-      <text class="tag">复古</text>
-      <text class="tag">书店</text>
-      <text class="tag">安静</text>
+      <text class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</text>
     </view>
     <text class="place-description">
-      藏在老巷子里的二手书店，老板会泡手冲咖啡，周末有读书会。这里有着浓厚的文艺氛围，是城市中难得的宁静角落。
+      {{place.address || '藏在老巷子里的二手书店，老板会泡手冲咖啡，周末有读书会。这里有着浓厚的文艺氛围，是城市中难得的宁静角落。'}}
     </text>
   </view>
 
@@ -39,6 +37,7 @@
         <image class="ugc-image" src="/images/ugc4.jpg" mode="aspectFill"></image>
       </view>
     </scroll-view>
+    <button class="view-more-btn" bindtap="viewMoreDiaries">查看更多探索日记</button>
   </view>
 
   <!-- 底部操作区 -->

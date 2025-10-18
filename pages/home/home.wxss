@@ -5,188 +5,309 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  background-color: #fdfdfd; /* 乳白色背景 */
+  animation: gradientShift 10s ease infinite;
+  background-size: 400% 400%;
 }
 
-/* 顶部标题 */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 页面标题 */
 .header {
-  padding: 20rpx 0;
+  text-align: center;
+  padding: 60rpx 0 40rpx;
+}
+
+.title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.1);
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.1);
+}
+
+/* 内容区域 */
+.content-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  position: relative;
 }
 
-.header-title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #424242;
-}
-
-.header-divider {
-  width: 60rpx;
-  height: 1px;
-  background-color: #FF7F00;
-  margin-top: 10rpx;
-}
-
-/* 背景层：淡米色背景 */
-.background-layer {
+/* 插画容器 */
+.illustration-container {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #FFF8E1;
-  z-index: -1;
+  pointer-events: none;
 }
 
-/* 中间文字层：随性的城市线索 */
-.middle-section {
+/* 插画元素 */
+.illustration {
+  position: absolute;
+  color: rgba(0,0,0,0.1);
+  opacity: 0.3;
+  font-size: 24rpx;
+  animation: float 4s ease-in-out infinite;
+}
+
+.illustration.top-left {
+  top: 20rpx;
+  left: 20rpx;
+  animation-delay: 0s;
+}
+
+.illustration.top-right {
+  top: 20rpx;
+  right: 20rpx;
+  animation-delay: 1s;
+}
+
+.illustration.bottom-left {
+  bottom: 20rpx;
+  left: 20rpx;
+  animation-delay: 2s;
+}
+
+.illustration.bottom-right {
+  bottom: 20rpx;
+  right: 20rpx;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0rpx) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10rpx) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0rpx) rotate(0deg);
+  }
+}
+
+/* 主要提示文字 */
+.main-text {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
+  animation: fadeInUp 1s ease-out;
 }
 
-.clue-container {
-  display: flex;
-  flex-direction: column;
-  animation: scrollUp 20s linear infinite;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .clue-text {
-  font-size: 36rpx;
-  font-weight: normal;
-  color: #424242;
-  opacity: 0.4;
-  margin: 30rpx 0;
+  font-size: 28rpx;
+  font-weight: 300;
+  color: #555;
   text-align: center;
-  white-space: nowrap;
   font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  margin: 10rpx 0;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.1);
 }
 
-@keyframes scrollUp {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
+.clue-text.first {
+  position: relative;
+}
+
+.clue-text.first::after {
+  content: '';
+  position: absolute;
+  bottom: -5rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2rpx;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1rpx;
 }
 
 /* 功能入口区 */
 .entry-section {
-  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 40rpx;
+  margin-bottom: 60rpx;
 }
 
 .explore-btn {
-  width: 60%;
-  background-color: #FF7F00;
+  width: 300rpx;
+  height: 88rpx;
+  background: linear-gradient(45deg, #ff6b00, #ff8c00);
   color: white;
-  border-radius: 8rpx;
-  font-size: 34rpx;
+  font-size: 32rpx;
   font-weight: bold;
-  box-shadow: inset 0 -2rpx 4rpx rgba(0, 0, 0, 0.2);
+  border-radius: 40rpx;
   margin-bottom: 30rpx;
   position: relative;
   overflow: hidden;
   border: none;
-  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.explore-btn::before {
+  content: '→';
+  color: rgba(255,255,255,0.8);
+  margin-right: 10rpx;
+  font-size: 28rpx;
+}
+
+.explore-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15rpx 25rpx rgba(0,0,0,0.3);
+}
+
+.explore-btn:active {
+  transform: scale(0.98);
 }
 
 .explore-btn::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -60%;
-  width: 20px;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: rotate(25deg);
-  transition: all 0.4s;
+  top: 50%;
+  left: 50%;
+  width: 5rpx;
+  height: 5rpx;
+  background: rgba(255,255,255,0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
 }
 
-.explore-btn:hover::after {
-  left: 120%;
+.explore-btn:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(50, 50);
+    opacity: 0;
+  }
 }
 
 .hint-text {
   font-size: 24rpx;
-  color: #999;
+  color: #777;
+  text-align: center;
+  line-height: 1.5;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.1);
+}
+
+.hint-text.second {
+  color: #333;
+  font-weight: 500;
+}
+
+.hint-text .highlight {
+  color: #ff6b00;
+  font-size: 20rpx;
+  font-weight: bold;
 }
 
 /* 底部辅助区 */
 .footer-section {
-  height: 20vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 80rpx;
+  padding: 0 40rpx;
+  margin-top: auto;
+  padding-bottom: 40rpx;
 }
 
 .footer-item {
+  display: flex;
+  align-items: center;
   cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1);
 }
 
-.footer-item.left {
-  align-self: flex-start;
-}
-
-.footer-item.right {
-  align-self: flex-end;
+.footer-item:hover {
+  transform: scale(1.05);
 }
 
 .footer-text {
   font-size: 24rpx;
-  color: #757575;
+  color: #777;
   transition: all 0.3s ease;
   position: relative;
+  text-shadow: 0 1rpx 2rpx rgba(0,0,0,0.1);
 }
 
-.footer-item:active .footer-text {
-  color: #FF7F00;
+.footer-item:hover .footer-text {
+  color: #333;
 }
 
-.footer-item:active .footer-text::after {
+.footer-item:hover .footer-text::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -5rpx;
-  width: 100%;
-  height: 2rpx;
-  background-color: #FF7F00;
-}
-
-/* 爆炸碎片效果 */
-.particle-container {
-  position: absolute;
-  top: 0;
+  bottom: -2rpx;
   left: 0;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 100;
+  height: 1px;
+  background-color: rgba(0,0,0,0.2);
 }
 
-.particle {
-  position: absolute;
-  border-radius: 50%;
-  animation: explode 1s ease-out forwards;
+.footer-divider {
+  width: 1px;
+  height: 24rpx;
+  background-color: rgba(0,0,0,0.1);
+  margin: 0 20rpx;
 }
 
-@keyframes explode {
-  0% {
-    transform: translate(0, 0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(var(--tx), var(--ty)) scale(0);
-    opacity: 0;
-  }
+.footer-icon {
+  margin-right: 10rpx;
+  font-size: 20rpx;
+  color: #777;
+  transition: all 0.3s ease;
+}
+
+.footer-item:hover .footer-icon {
+  color: #333;
 }

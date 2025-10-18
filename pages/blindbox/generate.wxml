@@ -1,0 +1,107 @@
+<!-- 盲盒生成设置页 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">城市盲盒·步行版</text>
+    <text class="subtitle">探索你熟悉城市的未知角落</text>
+  </view>
+
+  <!-- 位置信息 -->
+  <view class="location-section">
+    <view class="section-header">
+      <text class="section-title">当前位置</text>
+      <text class="section-desc">用于搜索附近的探索地点</text>
+    </view>
+    <view class="location-info">
+      <block wx:if="{{userLocation}}">
+        <text class="location-status">✓ 已获取位置信息</text>
+      </block>
+      <block wx:else>
+        <text class="location-status">✕ 未获取位置信息</text>
+        <button class="get-location-btn" bindtap="getUserLocation">重新获取位置</button>
+      </block>
+    </view>
+  </view>
+
+  <!-- 探索范围设置 -->
+  <view class="setting-section">
+    <view class="section-header">
+      <text class="section-title">探索范围</text>
+      <text class="section-desc">设置你愿意步行的距离</text>
+    </view>
+    <view class="range-setting">
+      <slider 
+        min="1" 
+        max="3" 
+        step="0.1"
+        value="{{rangeValue}}" 
+        bindchange="onRangeChange" 
+        activeColor="#ff6b00"
+        blockSize="20"
+      />
+      <view class="range-display">
+        <text class="range-value">{{rangeValue}}</text>
+        <text class="range-unit">公里</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 兴趣标签选择 -->
+  <view class="setting-section">
+    <view class="section-header">
+      <text class="section-title">兴趣标签</text>
+      <text class="section-desc">选择你感兴趣的地点类型</text>
+    </view>
+    <view class="tags-container">
+      <view 
+        class="tag-item {{selectedTags.indexOf('文艺') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="文艺"
+      >
+        文艺
+      </view>
+      <view 
+        class="tag-item {{selectedTags.indexOf('美食') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="美食"
+      >
+        美食
+      </view>
+      <view 
+        class="tag-item {{selectedTags.indexOf('复古') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="复古"
+      >
+        复古
+      </view>
+      <view 
+        class="tag-item {{selectedTags.indexOf('自然') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="自然"
+      >
+        自然
+      </view>
+      <view 
+        class="tag-item {{selectedTags.indexOf('创意') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="创意"
+      >
+        创意
+      </view>
+      <view 
+        class="tag-item {{selectedTags.indexOf('历史') !== -1 ? 'selected' : ''}}" 
+        bindtap="toggleTag" 
+        data-tag="历史"
+      >
+        历史
+      </view>
+    </view>
+  </view>
+
+  <!-- 生成按钮 -->
+  <view class="generate-section">
+    <button class="generate-btn" bindtap="generateBlindBox" disabled="{{isLoading}}">
+      {{isLoading ? '正在生成...' : '生成我的城市盲盒'}}
+    </button>
+  </view>
+</view>

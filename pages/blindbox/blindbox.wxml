@@ -2,26 +2,59 @@
 <view class="container">
   <!-- 盲盒卡片 -->
   <view class="blindbox-card animation-slide-up">
-    <image class="blindbox-icon" src="/images/blindbox-icon.png"></image>
-    <text class="card-title">你的盲盒已生成！</text>
-    <view class="card-info">
-      <text class="distance">距离你约 {{distance}} 米</text>
-      <text class="tags">标签：{{tags}}</text>
+    <!-- 盲盒图标 -->
+    <view class="blindbox-icon-container">
+      <view class="blindbox-icon">
+        <text class="icon-text">?</text>
+      </view>
     </view>
-    <text class="hint-text">不告诉你是什么，但相信你会喜欢</text>
+    
+    <text class="card-title">你的城市盲盒已生成！</text>
+    
+    <view class="card-info">
+      <block wx:if="{{place}}">
+        <view class="info-item">
+          <text class="info-label">地点名称</text>
+          <text class="info-value">{{place.title}}</text>
+        </view>
+        <view class="info-item">
+          <text class="info-label">地点地址</text>
+          <text class="info-value">{{place.address}}</text>
+        </view>
+      </block>
+      <view class="info-item">
+        <text class="info-label">探索范围</text>
+        <text class="info-value">{{range}} 公里</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">距离</text>
+        <text class="info-value">{{distance}} 米</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">兴趣标签</text>
+        <view class="tags-container">
+          <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+        </view>
+      </view>
+    </view>
+    
+    <text class="hint-text">神秘地点已锁定，开启探索之旅吧！</text>
   </view>
 
   <!-- 操作按钮区 -->
   <view class="actions">
-    <button class="action-btn reset-btn" bindtap="regenerate">重新生成</button>
+    <button class="action-btn reset-btn" bindtap="regenerate">
+      <image class="btn-icon" src="/images/reset-icon.png"></image>
+      重新生成
+    </button>
     <button class="action-btn navigate-btn" bindtap="startNavigation">
-      <image class="navigate-icon" src="/images/navigate-arrow.png"></image>
-      开始导航
+      <image class="btn-icon" src="/images/navigate-icon.png"></image>
+      立即探索
     </button>
   </view>
 
   <!-- 底部提示 -->
   <view class="bottom-hint">
-    <text class="hint-text">到达后自动解锁地点名称和特色</text>
+    <text class="hint-text">到达目标地点50米内即可解锁神秘地点</text>
   </view>
 </view>

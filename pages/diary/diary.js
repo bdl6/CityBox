@@ -1,6 +1,7 @@
 // pages/diary/diary.js
 Page({
   data: {
+    placeName: '',
     photos: [],
     description: '',
     wordCount: 0,
@@ -8,7 +9,11 @@ Page({
   },
 
   onLoad(options) {
-
+    // 获取传入的地点名称
+    const placeName = options.placeName ? decodeURIComponent(options.placeName) : '';
+    this.setData({
+      placeName: placeName
+    });
   },
 
   // 上传照片

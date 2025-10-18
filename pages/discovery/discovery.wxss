@@ -105,6 +105,19 @@
   border-radius: 10rpx;
 }
 
+.view-more-btn {
+  display: block;
+  width: 100%;
+  background-color: #ff6b00;
+  color: white;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 20rpx;
+  margin-top: 20rpx;
+  text-align: center;
+}
+
 /* 底部操作区 */
 .footer-section {
   padding: 30rpx;

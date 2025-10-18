@@ -2,9 +2,23 @@
 <view class="container">
   <!-- 顶部状态栏 -->
   <view class="status-bar">
-    <text class="status-text">导航中…</text>
+    <text class="status-text">探索进行中…</text>
     <view class="exit-btn" bindtap="exitNavigation">
       <text class="exit-text">退出</text>
+    </view>
+  </view>
+
+  <!-- 盲盒信息 -->
+  <view class="blindbox-info">
+    <view class="info-item">
+      <text class="info-label">探索范围</text>
+      <text class="info-value">{{range}} 公里</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">兴趣标签</text>
+      <view class="tags-container">
+        <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+      </view>
     </view>
   </view>
 
@@ -16,6 +30,7 @@
       style="transform: rotate({{arrowRotation}}deg);"
     ></image>
     <text class="direction-text">向{{direction}}方向前进</text>
+    <text class="hint-text">跟随指引，发现城市中的惊喜角落</text>
   </view>
 
   <!-- 距离显示区 -->
@@ -30,6 +45,12 @@
       <view class="progress-bar" style="width: {{progressWidth}};"></view>
     </view>
     <text class="progress-text">{{progress}}%</text>
+  </view>
+
+  <!-- 模糊提示 -->
+  <view class="blur-hint">
+    <text class="hint-title">探索提示</text>
+    <text class="hint-content">保持好奇心，留意身边的独特建筑和小店</text>
   </view>
 
   <!-- 底部辅助区 -->
