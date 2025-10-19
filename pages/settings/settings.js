@@ -3,17 +3,28 @@ Page({
   data: {
     rangeValue: 2.0,
     selectedTags: [],
+    isArt:false,
+    isFood:false,
+    isOld:false,
+    isNature:false,
+    isMarket:false,
+    isFun:false,
     isGiftBoxOpen: false
   },
 
   onLoad(options) {
-
+    // 为了方便调试，可以在这里初始化一些标签
+    // this.setData({
+    //   selectedTags: ['美食']
+    // })
+  },
+  
+  // 生命周期函数，页面初次渲染完成时调用
+  onReady() {
+    console.log('标签选择器初始化完成，当前选中标签:', this.data.selectedTags)
   },
 
-  // 返回按钮点击事件
-  goBack() {
-    wx.navigateBack()
-  },
+ 
 
   // 帮助按钮点击事件
   showHelp() {
@@ -38,7 +49,6 @@ Page({
   toggleTag(e) {
     const tag = e.currentTarget.dataset.tag
     let selectedTags = [...this.data.selectedTags] // 创建副本以避免直接修改原数组
-    
     const index = selectedTags.indexOf(tag)
     if (index !== -1) {
       // 如果已选中，则取消选中
@@ -60,16 +70,90 @@ Page({
       })
     }
     
+    //以下是用来修改状态的屎山代码，被逼无奈了
+{
+    if(selectedTags.includes('文艺')){
+      this.setData({
+        isArt:true
+      })
+    }else{
+      this.setData({
+        isArt:false
+      })
+    }
+    if(selectedTags.includes('美食')){
+      this.setData({
+        isFood:true
+      })
+    }else{
+      this.setData({
+        isFood:false
+      })
+    }
+    if(selectedTags.includes('复古')){
+      this.setData({
+        isOld:true
+      })
+    }else{
+      this.setData({
+        isOld:false
+      })
+    }
+    if(selectedTags.includes('自然')){
+      this.setData({
+        isNature:true
+      })
+    }else{
+      this.setData({
+        isNature:false
+      })
+    }
+    if(selectedTags.includes('小众市集')){
+      this.setData({
+        isMarket:true
+      })
+    }else{
+      this.setData({
+        isMarket:false
+      })
+    }
+    if(selectedTags.includes('娱乐')){
+      this.setData({
+        isFun:true
+      })
+    }else{
+      this.setData({
+        isFun:false
+      })
+    }
+  
     this.setData({
       selectedTags
     })
-  },
+  }
+},
 
   // 小礼盒开关切换事件
   toggleGiftBox() {
     this.setData({
       isGiftBoxOpen: !this.data.isGiftBoxOpen
     })
+  },
+  
+  // 触摸开始时添加active类，显示浅绿色
+  handleBoxTouchStart: function() {
+    this.setData({
+      boxActive: true
+    })
+  },
+  
+  // 触摸结束时移除active类
+  handleBoxTouchEnd: function() {
+    setTimeout(() => {
+      this.setData({
+        boxActive: false
+      })
+    }, 100)
   },
 
   // 生成盲盒按钮点击事件

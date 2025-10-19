@@ -124,11 +124,12 @@
   display: flex;
   justify-content: space-between;
   margin-top: 50rpx;
+  margin-bottom: 300rpx;
+  gap: 30rpx;
 }
 
 .action-btn {
-  flex: 1;
-  height: 80rpx;
+  height: 90rpx;
   border-radius: 40rpx;
   display: flex;
   justify-content: center;
@@ -138,9 +139,8 @@
 }
 
 .reset-btn {
-  background-color: #f0f0f0;
+  background-color: #faf8f8;
   color: #666;
-  margin-right: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,7 +149,6 @@
 .navigate-btn {
   background: linear-gradient(135deg, #ff6b00 0%, #ff8e00 100%);
   color: #fff;
-  margin-left: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -164,7 +163,7 @@
 /* 底部提示 */
 .bottom-hint {
   position: absolute;
-  bottom: 50rpx;
+  bottom: 120rpx;
   width: 100%;
   text-align: center;
 }

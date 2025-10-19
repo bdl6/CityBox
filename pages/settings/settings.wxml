@@ -2,11 +2,12 @@
 <view class="container">
   <!-- 页面标题 -->
   <view class="header">
-    <view class="nav-left" bindtap="goBack">
+    <view class="nav-left" >
       <image class="nav-icon" src="/images/back.png"></image>
     </view>
     <text class="title">定制你的盲盒</text>
     <view class="nav-right" bindtap="showHelp">
+    2
       <image class="nav-icon" src="/images/help.png"></image>
     </view>
   </view>
@@ -35,7 +36,7 @@
       </view>
       <view class="tags-container">
         <view 
-          class="tag {{selectedTags.indexOf('文艺') !== -1 ? 'tag-selected' : 'tag-unselected'}} art" 
+          class="tag art {{isArt ? 'tag-selected' : 'tag-unselected'}}" 
           bindtap="toggleTag" 
           data-tag="文艺"
         >
@@ -44,7 +45,7 @@
         </view>
 
         <view 
-          class="tag {{selectedTags.indexOf('美食') !== -1 ? 'tag-selected' : 'tag-unselected'}} food" 
+          class="tag food {{isFood ? 'tag-selected' : 'tag-unselected'}}" 
           bindtap="toggleTag" 
           data-tag="美食"
         >
@@ -52,7 +53,7 @@
           <text class="tag-text">美食</text>
         </view>
         <view 
-          class="tag {{selectedTags.indexOf('复古') !== -1 ? 'tag-selected' : 'tag-unselected'}} retro" 
+          class="tag retro {{isOld ? 'tag-selected' : 'tag-unselected'}}" 
           bindtap="toggleTag" 
           data-tag="复古"
         >
@@ -60,7 +61,7 @@
           <text class="tag-text">复古</text>
         </view>
         <view 
-          class="tag {{selectedTags.indexOf('自然') !== -1 ? 'tag-selected' : 'tag-unselected'}} nature" 
+          class="tag nature {{isNature ? 'tag-selected' : 'tag-unselected'}}" 
           bindtap="toggleTag" 
           data-tag="自然"
         >
@@ -68,12 +69,20 @@
           <text class="tag-text">自然</text>
         </view>
         <view 
-          class="tag {{selectedTags.indexOf('小众市集') !== -1 ? 'tag-selected' : 'tag-unselected'}} market" 
+          class="tag market {{isMarket ? 'tag-selected' : 'tag-unselected'}}" 
           bindtap="toggleTag" 
           data-tag="小众市集"
         >
           <image class="tag-icon" src="/images/flag.png"></image>
           <text class="tag-text">小众市集</text>
+        </view>
+        <view 
+          class="tag entertain {{isFun ? 'tag-selected' : 'tag-unselected'}}" 
+          bindtap="toggleTag" 
+          data-tag="娱乐"
+        >
+          <image class="tag-icon" src="/images/flag.png"></image>
+          <text class="tag-text">娱乐</text>
         </view>
       </view>
     </view>
@@ -85,12 +94,14 @@
         <text class="section-desc">开启后将根据你的偏好生成个性化盲盒</text>
       </view>
       <view class="switch-container">
-        <text class="switch-label">启用盲盒推荐</text>
-        <view class="switch" bindtap="toggleGiftBox">
-          <input type="checkbox" checked="{{isGiftBoxOpen}}" />
-          <view class="slider"></view>
-        </view>
-      </view>
+            <text class="switch-label">启用盲盒推荐</text>
+            <view class="gift-box-switch {{isGiftBoxOpen ? 'open' : 'closed'}} {{boxActive ? 'active' : ''}}" bindtap="toggleGiftBox" bindtouchstart="handleBoxTouchStart" bindtouchend="handleBoxTouchEnd">
+              <view class="gift-box-body"></view>
+              <view class="gift-box-side"></view>
+              <view class="gift-box-top-side"></view>
+              <view class="gift-box-lid"></view>
+            </view>
+          </view>
     </view>
 
     <!-- 生成按钮 -->
