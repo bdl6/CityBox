@@ -1,47 +1,66 @@
-<!-- 探索日记编辑页 -->
+<!-- index.wxml -->
 <view class="container">
-  <!-- 页面标题 -->
-  <view class="header">
-    <text class="page-title">探索日记</text>
-    <text class="place-name" wx:if="{{placeName}}">地点：{{placeName}}</text>
-  </view>
+  
 
-  <!-- 照片上传区 -->
-  <view class="photo-section">
-    <text class="section-title">现场照片</text>
-    <view class="photos-container">
-      <view wx:for="{{photos}}" wx:key="index" class="photo-item">
-        <image class="uploaded-photo" src="{{item}}" mode="aspectFill"></image>
-        <view class="delete-btn" bindtap="deletePhoto" data-index="{{index}}">
-          <image class="delete-icon" src="/images/delete.png"></image>
-        </view>
-      </view>
-      <view wx:if="{{photos.length < 3}}" class="upload-placeholder" bindtap="uploadPhoto">
-        <image class="upload-icon" src="/images/add-photo.png"></image>
-        <text class="upload-hint">最多上传 3 张现场照片</text>
+  <!-- 探索日记卡片 -->
+  <view class="card journal-card">
+    <view class="card-header">
+      <view class="card-icon">✏️</view>
+      <view class="card-title">探索日记</view>
+    </view>
+    <view class="card-content">
+      <view class="location-info">
+        <view class="location-icon">📍</view>
+        <view class="location-text">{{title}}</view>
       </view>
     </view>
   </view>
 
-  <!-- 文字输入区 -->
-  <view class="text-section">
-    <text class="section-title">一句话描述你的感受</text>
-    <textarea 
-      class="description-input" 
-      placeholder="分享你在这里的发现吧…（10-200 字）" 
-      maxlength="200"
-      bindinput="onInput"
-      value="{{description}}"
-    ></textarea>
-    <view class="word-count">{{wordCount}}/200</view>
+  <!-- 现场照片上传 -->
+  <view class="card photo-card">
+    <view class="card-header">
+      <view class="card-icon">📷</view>
+      <view class="card-title">现场照片</view>
+    </view>
+    <view class="card-content">
+      <view class="upload-tip">最多上传3张现场照片</view>
+      <view class="upload-container">
+        <view class="upload-btn" bindtap="chooseImage">
+          <view class="add-icon">+</view>
+          <view class="upload-text">点击上传</view>
+        </view>
+        <view class="image-list" wx:if="{{imageList.length > 0}}">
+          <block wx:for="{{imageList}}" wx:key="index">
+            <view class="image-item">
+              <image src="{{item}}" class="preview-image" mode="cover" />
+              <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
   </view>
 
-  <!-- 底部提交区 -->
-  <view class="footer-section">
-    <button 
-      class="submit-btn" 
-      bindtap="submitDiary"
-      disabled="{{!canSubmit}}"
-    >发布</button>
+  <!-- 感受描述 -->
+  <view class="card desc-card">
+    <view class="card-header">
+      <view class="card-icon">💭</view>
+      <view class="card-title">一句话描述你的感受</view>
+    </view>
+    <view class="card-content">
+      <textarea 
+        class="desc-input" 
+        placeholder="分享你在这里的发现吧...（10-200字）" 
+        bindinput="inputDesc" 
+        maxlength="200" 
+      />
+      <view class="word-count">{{descLength}}/200</view>
+    </view>
   </view>
+
+  <!-- 发布按钮 -->
+  <button class="publish-btn" bindtap="publish">
+    <span>发布探索日记</span>
+    <view class="arrow-icon">→</view>
+  </button>
 </view>
