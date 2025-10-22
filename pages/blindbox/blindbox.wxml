@@ -1,0 +1,51 @@
+<!-- 盲盒详情页 -->
+<view class="container">
+  <!-- 盲盒卡片 -->
+  <view class="blindbox-card animation-slide-up">
+    <!-- 盲盒图标 -->
+    <view class="blindbox-icon-container">
+      <view class="blindbox-icon">
+        <text class="icon-text">?</text>
+      </view>
+    </view>
+    
+    <text class="card-title">你的城市盲盒已生成！</text>
+    <text>{{place.title}}-{{place.address}}</text>
+    <view class="card-info">
+      
+      <view class="info-item">
+        <text class="info-label">探索范围</text>
+        <text class="info-value">{{range}} 公里</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">距离</text>
+        <text class="info-value">{{distance}} 米</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">兴趣标签</text>
+        <view class="tags-container">
+          <view class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</view>
+        </view>
+      </view>
+    </view>
+    
+    <text class="hint-text">神秘地点已锁定，开启探索之旅吧！</text>
+  </view>
+
+  <!-- 操作按钮区 -->
+  <view class="actions">
+    <button class="action-btn reset-btn" bindtap="regenerate">
+      <image class="btn-icon" src="/images/reset-icon.png"></image>
+      修改标签
+    </button>
+    <button class="action-btn navigate-btn" bindtap="startNavigation">
+      <image class="btn-icon" src="/images/navigate-icon.png"></image>
+      立即探索
+    </button>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="bottom-hint">
+    <text class="hint-text">到达目标地点50米内即可解锁神秘地点</text>
+  </view>
+</view>

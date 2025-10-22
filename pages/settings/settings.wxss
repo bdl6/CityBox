@@ -1,0 +1,326 @@
+/* 盲盒设置页样式 */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF8E1;
+}
+
+/* 顶部导航栏 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.nav-left, .nav-right {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.nav-title {
+  font-size: 24px;
+  font-family: "ZCOOL KuaiLe", "Comic Sans MS", cursive, sans-serif;
+  background: linear-gradient(to right, #A7E9C5, #F8D7DA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 内容区域 */
+.content {
+  flex: 1;
+  padding: 30rpx;
+}
+
+/* 区块样式 */
+.setting-section {
+  margin-bottom: 50rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #424242;
+  margin-bottom: 15rpx;
+}
+
+.section-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #9E9E9E;
+  margin-bottom: 30rpx;
+}
+
+/* 范围设置 */
+.range-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.range-label {
+  font-size: 24rpx;
+  color: #666;
+  width: 80rpx;
+}
+
+.range-slider {
+  flex: 1;
+  margin: 0 20rpx;
+}
+
+.current-range {
+  text-align: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #ff6b00;
+}
+
+/* 标签选择 */
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tag {
+  width: 48%;
+  height: 80rpx;
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2rpx 5rpx rgba(0,0,0,0.5);
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 75% 100%, 0 100%);
+  transform: rotate(10);
+}
+
+.tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: brightness(1.1);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.tag-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 15rpx;
+}
+
+.tag-text {
+  font-size: 26rpx;
+  z-index: 1;
+}
+
+/* 未选中标签样式 */
+.tag.tag-unselected {
+  transform: rotate(5deg);
+  color: white;
+  opacity: 0.8;
+  /* 确保未选中状态也有明确的背景色 */
+}
+
+/* 选中状态样式 - 使用更高优先级 */
+.tag.tag-selected {
+  transform: rotate(0deg) scale(1.2) !important;
+  color: white;
+  opacity: 1;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.3);
+  /* 覆盖所有其他样式 */
+  z-index: 10;
+}
+
+.tag.art {
+  background-color: #4caf50;
+}
+
+.tag.food {
+  background-color: #ff9800;
+}
+
+.tag.retro {
+  background-color: #795548;
+}
+
+.tag.nature {
+  background-color: #8bc34a;
+}
+
+.tag.market {
+  background-color: #9c27b0;
+}
+
+.tag.entertain {
+  background-color: #5387f5;
+}
+
+.tag:active {
+  transform: rotate(8deg) scale(0.9);
+}
+
+/* 盲盒推荐开关 */
+.switch-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0rpx;
+}
+
+.switch-label {
+  font-size: 28rpx;
+  color: #424242;
+}
+
+/* 简化二维侧面箱子开关 */
+.gift-box-switch {
+  margin-right: 50rpx;
+  width: 60rpx;
+  height: 40rpx;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 箱子主体 */
+.gift-box-body {
+  position: absolute;
+  width: 60rpx;
+  height: 25rpx;
+  background-color: #ffffff;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 1rpx 3rpx rgba(0,0,0,0.1);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+/* 添加箱子上下部分分界线 */
+.gift-box-body::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1rpx;
+  background-color: #e0e0e0;
+  top: -1rpx;
+  left: 0;
+}
+
+/* 箱子侧面 */
+.gift-box-side {
+  position: absolute;
+  width: 6rpx;
+  height: 25rpx;
+  background-color: #f5f5f5;
+  bottom: 0;
+  left: 60rpx;
+  box-shadow: 1rpx 0 2rpx rgba(0,0,0,0.05);
+  z-index: 0;
+}
+
+/* 箱子顶部侧面 */
+.gift-box-top-side {
+  position: absolute;
+  width: 60rpx;
+  height: 6rpx;
+  background-color: #f5f5f5;
+  top: 8rpx;
+  left: 0;
+  transform: skew(-30deg);
+  transform-origin: top left;
+  z-index: 0;
+}
+
+/* 盒盖 */
+.gift-box-lid {
+  position: absolute;
+  width: 60rpx;
+  height: 15rpx;
+  background-color: #ffffff;
+  top: -3rpx;
+  left: 0;
+  box-shadow: 0 -1rpx 2rpx rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  z-index: 3;
+  transform-origin: right top;
+}
+
+/* 开关打开状态 - 盒盖绕最右侧旋转打开 */
+.gift-box-switch.open .gift-box-lid {
+  transform: rotateZ(90deg);
+  left: 0;
+  top: -3rpx;
+}
+
+/* 点击时变成浅绿色 */
+.gift-box-switch.active .gift-box-body,
+.gift-box-switch.open .gift-box-body {
+  background-color: #e8f5e9;
+}
+
+.gift-box-switch.active .gift-box-lid,
+.gift-box-switch.open .gift-box-lid {
+  background-color: #c8e6c9;
+}
+
+/* 点击盒盖时的效果 */
+.gift-box-lid:active {
+  transform: rotateZ(30deg);
+}
+
+.gift-box-switch.open .gift-box-lid:active {
+  transform: rotateZ(90deg);
+}
+
+/* 生成按钮 */
+.generate-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 50rpx;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  width: 1000rpx;
+  height: 120rpx;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  border: none; /* 去除按钮边框 */
+}

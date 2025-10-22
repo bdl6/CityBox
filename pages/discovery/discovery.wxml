@@ -1,0 +1,48 @@
+<!-- 地点揭秘页 -->
+<view class="container">
+  <!-- 顶部图片区 -->
+  <view class="image-section">
+    <image class="main-image" src="/images/place-image.png" mode="aspectFill"></image>
+    <view class="upload-btn" bindtap="uploadPhoto">
+      <image class="camera-icon" src="/images/camera.png"></image>
+      <text class="upload-text">上传照片</text>
+    </view>
+  </view>
+
+  <!-- 地点信息区 -->
+  <view class="info-section">
+    <text class="place-name">{{place.title || '街角旧书店'}}</text>
+    <view class="place-tags">
+      <text class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</text>
+    </view>
+    <text class="place-description">
+      {{place.address || '藏在老巷子里的二手书店，老板会泡手冲咖啡，周末有读书会。这里有着浓厚的文艺氛围，是城市中难得的宁静角落。'}}
+    </text>
+  </view>
+
+  <!-- UGC 互动区 -->
+  <view class="ugc-section">
+    <text class="ugc-title">其他人的探索</text>
+    <scroll-view class="ugc-images" scroll-x>
+      <view class="image-item">
+        <image class="ugc-image" src="/images/ugc1.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="image-item">
+        <image class="ugc-image" src="/images/ugc2.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="image-item">
+        <image class="ugc-image" src="/images/ugc3.jpg" mode="aspectFill"></image>
+      </view>
+      <view class="image-item">
+        <image class="ugc-image" src="/images/ugc4.jpg" mode="aspectFill"></image>
+      </view>
+    </scroll-view>
+    <button class="view-more-btn" bindtap="viewMoreDiaries">查看更多探索日记</button>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="footer-section">
+    <button class="diary-btn" bindtap="writeDiary">写探索日记</button>
+    <text class="hint-text">分享你的发现，帮更多人找到这里</text>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/discovery/discovery",
+    "pages/navigation/navigation",
+    "pages/settings/settings",
+    "pages/discovery/ugc",
+    "pages/myexploration/myexploration",
+    "pages/blindbox/blindbox",
+    "pages/diary/diary",
+    "pages/tencentmap/txmap"
+    
+    
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "城市盲盒",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "点击确认"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "startLocationUpdateBackground"
+  ],
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

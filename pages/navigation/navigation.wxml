@@ -1,0 +1,68 @@
+<view class="mapstyle">
+  <map 
+        id="navigationMap"
+        longitude="{{startlongitude}}" 
+        latitude="{{startlatitude}}"
+        scale="16"
+        show-location
+      ></map>
+      <view class="map-overlay">
+      <view class="map-info">
+        <text class="map-status">探索进行中…</text>
+      </view>
+    </view>
+    <!-- 顶部退出按钮 -->
+    <view class="map-exit-btn" bindtap="exitNavigation">
+      <text class="exit-text">退出</text>
+    </view>
+ </view>
+
+
+
+<view class="container">
+
+  <!-- 底部信息区域 -->
+    <view class="bottom-section">
+    <!-- 方向指引区 -->
+    <view class="direction-section">
+      <image 
+        class="direction-arrow" 
+        src="/images/arrow.png" 
+        style="transform: rotate({{arrowRotation}}deg);"
+      ></image>
+      <text class="direction-text">向{{direction}}方向前进</text>
+      <text class="hint-text">跟随指引，发现城市中的惊喜角落</text>
+    </view>
+
+    <!-- 距离显示区 -->
+    <view class="distance-section">
+      <text class="distance-number">{{remainingDistance}}m</text>
+      <text class="distance-label">距离目标</text>
+      
+      <!-- 进度条 -->
+      <view class="progress-container">
+        <view class="progress-background"></view>
+        <view class="progress-bar" style="width: {{progressWidth}};"></view>
+      </view>
+      <text class="progress-text">{{progress}}%</text>
+    </view>
+
+    
+
+    <!-- 模糊提示 -->
+    <view class="blur-hint">
+      <text class="hint-title">探索提示</text>
+      <text class="hint-content">保持好奇心，留意身边的独特建筑和小店</text>
+    </view>
+
+    <!-- 底部辅助区 -->
+    <view class="footer-section">
+      <view class="refresh-btn" bindtap="refreshLocation">
+        <image class="refresh-icon" src="/images/refresh.png"></image>
+        <text class="refresh-text">刷新位置</text>
+      </view>
+    </view>
+    </view>
+</view> 
+
+ 

@@ -1,0 +1,45 @@
+<!-- 首页（入口页） -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="header">
+    <text class="title">城市盲盒·步行版</text>
+    <text class="subtitle">探索你熟悉城市的未知角落</text>
+  </view>
+
+  <!-- 中间内容区 -->
+  <view class="content-section">
+    <!-- 背景插画 -->
+    <view class="illustration-container">
+      <text class="illustration top-left">📚</text>
+      <text class="illustration top-right">☕</text>
+      <text class="illustration bottom-left">🌸</text>
+      <text class="illustration bottom-right">📚</text>
+    </view>
+    
+    <!-- 主要提示文字 -->
+    <view class="main-text">
+      <text class="clue-text first" style="position: relative; left: 0rpx; top: 9rpx">转角遇见</text>
+      <text class="clue-text">城市惊喜</text>
+    </view>
+    
+    <!-- 功能入口 -->
+    <view class="entry-section">
+      <button class="explore-btn" bindtap="startExplore" >开始探索</button>
+      <text class="hint-text">已为你准备 <text class="highlight">100+</text></text>
+      <text class="hint-text second">隐藏咖啡馆、老书店、特色小店</text>
+    </view>
+  </view>
+
+  <!-- 底部辅助区 -->
+  <view class="footer-section">
+    <view class="footer-item left" bindtap="goToMyExploration">
+      <text class="footer-icon">👣</text>
+      <text class="footer-text">我的探索</text>
+    </view>
+    <view class="footer-divider"></view>
+    <view class="footer-item right" bindtap="goToAbout">
+      <text class="footer-icon">❓</text>
+      <text class="footer-text">关于我们</text>
+    </view>
+  </view>
+</view>
