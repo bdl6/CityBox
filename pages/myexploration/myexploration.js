@@ -31,6 +31,15 @@ Page({
         image: "/images/cafe.jpg",
         distance: "800m",
         tags: ["咖啡", "特色"]
+      },
+      {
+        id: 2,
+        name: "隐藏咖啡馆",
+        date: "2023.09.22",
+        description: "一家很有特色的咖啡馆，装修风格独特，咖啡豆都是老板自己烘焙的，非常香醇。",
+        image: "/images/cafe.jpg",
+        distance: "800m",
+        tags: ["咖啡", "特色"]
       }
     ]
     

@@ -148,12 +148,20 @@ Page({
         title: '已启用盲盒推荐',
         icon:'success'
       })
+      this.setData({
+        selectedTags:['麦当劳']
+      })
+     
     }else{
       wx.showToast({
         title: '已关闭盲盒推荐',
         icon:'error'
       })
+      this.setData({
+        selectedTags:[]
+      })
     }
+    app.setSelectedTags(this.data.selectedTags)
   },
   
   // 触摸开始时添加active类，显示浅绿色

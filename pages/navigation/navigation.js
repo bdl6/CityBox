@@ -34,8 +34,8 @@ Page({
       totalDistance: parseInt(distance),
       remainingDistance: parseInt(distance),
     })
-    // this.getRemainDis()
-    // this.updateProgress()
+    this.getRemainDis()
+    this.updateProgress()
   },
 
   
