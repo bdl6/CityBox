@@ -143,6 +143,17 @@ Page({
     this.setData({
       isGiftBoxOpen: !this.data.isGiftBoxOpen
     })
+    if(this.data.isGiftBoxOpen){
+      wx.showToast({
+        title: '已启用盲盒推荐',
+        icon:'success'
+      })
+    }else{
+      wx.showToast({
+        title: '已关闭盲盒推荐',
+        icon:'error'
+      })
+    }
   },
   
   // 触摸开始时添加active类，显示浅绿色

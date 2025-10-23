@@ -34,8 +34,8 @@ Page({
       totalDistance: parseInt(distance),
       remainingDistance: parseInt(distance),
     })
-    this.getRemainDis()
-    this.updateProgress()
+    // this.getRemainDis()
+    // this.updateProgress()
   },
 
   
@@ -96,6 +96,7 @@ Page({
             console.log(res)
             wx.showToast({
               title: '路径规划失败',
+              icon:'error'
             })
           }
     

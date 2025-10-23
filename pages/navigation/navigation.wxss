@@ -1,29 +1,17 @@
 /* 导航页样式 */
+
 .mapstyle{
+  position: relative;
   height: 60vh;
   width: 100%;
 }
-
-
-.container {
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #f8efef 0%, #e4edf9 100%);
-}
-
-
-
-
-
 
 /* 地图覆盖层信息 */
 .map-overlay {
   position: absolute;
   top: 20rpx;
   left: 20rpx;
-  right: 120rpx;
-  z-index: 10;
+  right: 20rpx;
 }
 
 .map-info {
@@ -50,9 +38,8 @@
 /* 地图上的退出按钮 */
 .map-exit-btn {
   position: absolute;
-  top: 20rpx;
-  right: 20rpx;
-  z-index: 10;
+  top: 28rpx;
+  right: 40rpx;
   background: rgba(255, 107, 0, 0.9);
   padding: 10rpx 20rpx;
   border-radius: 20rpx;
@@ -67,12 +54,22 @@
 
 /* 底部信息区域 */
 .bottom-section {
-  overflow-y: auto;
-  flex:1
+  position: absolute;
+  top:50vh; 
+  padding: 50rpx;
+  margin-top: 100rpx;
+  width: 100%;
+  height: 35vh;
+  overflow: auto;
+  background: linear-gradient(135deg, #f8efef 0%, #e4edf9 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* 方向指引区 */
 .direction-section {
+  width: 80%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16rpx;
   padding: 30rpx;
@@ -84,10 +81,8 @@
 }
 
 .direction-arrow {
-  width: 100rpx;
-  height: 100rpx;
+  font-size: 100rpx;
   margin-bottom: 10rpx;
-  transition: transform 0.3s ease;
 }
 
 .direction-text {
@@ -105,6 +100,7 @@
 
 /* 距离显示区 */
 .distance-section {
+  width: 80%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16rpx;
   padding: 30rpx;
@@ -171,6 +167,7 @@
 
 /* 模糊提示 */
 .blur-hint {
+  width: 83%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 16rpx;
   padding: 20rpx;
@@ -194,9 +191,12 @@
 
 /* 底部辅助区 */
 .footer-section {
+  margin-left: 15vh;
   padding: 10rpx;
   display: flex;
+  width: 200rpx;
   justify-content: center;
+  align-items: center;
 }
 
 .refresh-btn {
@@ -210,8 +210,7 @@
 }
 
 .refresh-icon {
-  width: 50rpx;
-  height: 50rpx;
+  font-size: 50rpx;
   margin-bottom: 10rpx;
 }
 

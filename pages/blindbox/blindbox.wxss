@@ -126,7 +126,7 @@
   justify-content: space-between;
   margin-top: 50rpx;
   margin-bottom: 300rpx;
-  gap: 30rpx;
+  gap: 50rpx;
 }
 
 .action-btn {

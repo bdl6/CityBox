@@ -35,12 +35,10 @@
   <!-- 操作按钮区 -->
   <view class="actions">
     <button class="action-btn reset-btn" bindtap="regenerate">
-      <image class="btn-icon" src="/images/reset-icon.png"></image>
-      修改标签
+      🏷️ 修改标签
     </button>
     <button class="action-btn navigate-btn" bindtap="startNavigation">
-      <image class="btn-icon" src="/images/navigate-icon.png"></image>
-      立即探索
+      🌍 立即探索
     </button>
   </view>
 

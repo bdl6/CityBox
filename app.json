@@ -1,14 +1,13 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/discovery/discovery",
     "pages/navigation/navigation",
+    "pages/myexploration/myexploration",
+    "pages/discovery/discovery",
     "pages/settings/settings",
     "pages/discovery/ugc",
-    "pages/myexploration/myexploration",
     "pages/blindbox/blindbox",
-    "pages/diary/diary",
-    "pages/tencentmap/txmap"
+    "pages/diary/diary"
   ],
   "window": {
     "navigationBarTextStyle": "black",

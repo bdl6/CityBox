@@ -11,25 +11,15 @@
         <text class="map-status">探索进行中…</text>
       </view>
     </view>
-    <!-- 顶部退出按钮 -->
     <view class="map-exit-btn" bindtap="exitNavigation">
       <text class="exit-text">退出</text>
     </view>
  </view>
-
-
-
-<view class="container">
-
-  <!-- 底部信息区域 -->
-    <view class="bottom-section">
+ <view class="bottom-section">
+ 
     <!-- 方向指引区 -->
     <view class="direction-section">
-      <image 
-        class="direction-arrow" 
-        src="/images/arrow.png" 
-        style="transform: rotate({{arrowRotation}}deg);"
-      ></image>
+      <text class="direction-arrow">🧭</text>
       <text class="direction-text">向{{direction}}方向前进</text>
       <text class="hint-text">跟随指引，发现城市中的惊喜角落</text>
     </view>
@@ -58,11 +48,12 @@
     <!-- 底部辅助区 -->
     <view class="footer-section">
       <view class="refresh-btn" bindtap="refreshLocation">
-        <image class="refresh-icon" src="/images/refresh.png"></image>
+        <view class="refresh-icon">🔄</view>
         <text class="refresh-text">刷新位置</text>
       </view>
     </view>
     </view>
-</view> 
+
+
 
  

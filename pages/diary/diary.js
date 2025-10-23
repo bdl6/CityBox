@@ -63,7 +63,9 @@ onLoad(){
       icon: 'success'
     });
     setTimeout(() => {
-      wx.navigateBack();
+      wx.navigateTo({
+        url: `/pages/myexploration/myexploration`
+      })
     }, 1500);
   }
 });

@@ -2,14 +2,8 @@
 <view class="container">
   <!-- 页面标题 -->
   <view class="header">
-    <view class="nav-left" >
-      <image class="nav-icon" src="/images/back.png"></image>
-    </view>
     <text class="title">定制你的盲盒</text>
-    <view class="nav-right" bindtap="showHelp">
-    2
-      <image class="nav-icon" src="/images/help.png"></image>
-    </view>
+    <text class="nav-icon" bindtap="showHelp">ℹ️</text>
   </view>
 
   <scroll-view class="content" scroll-y>
@@ -40,7 +34,7 @@
           bindtap="toggleTag" 
           data-tag="文艺"
         >
-          <image class="tag-icon" src="/images/brush.png"></image>
+          <text class="tag-icon">🎨</text>
           <text class="tag-text">文艺</text>
         </view>
 
@@ -49,7 +43,7 @@
           bindtap="toggleTag" 
           data-tag="印象城"
         >
-          <image class="tag-icon" src="/images/fork.png"></image>
+          <text class="tag-icon">🍽️</text>
           <text class="tag-text">印象城</text>
         </view>
         <view 
@@ -57,7 +51,7 @@
           bindtap="toggleTag" 
           data-tag="复古"
         >
-          <image class="tag-icon" src="/images/camera.png"></image>
+          <text class="tag-icon">🕰️</text>
           <text class="tag-text">复古</text>
         </view>
         <view 
@@ -65,7 +59,7 @@
           bindtap="toggleTag" 
           data-tag="自然"
         >
-          <image class="tag-icon" src="/images/leaf.png"></image>
+          <text class="tag-icon">🌳</text>
           <text class="tag-text">自然</text>
         </view>
         <view 
@@ -73,7 +67,7 @@
           bindtap="toggleTag" 
           data-tag="小众市集"
         >
-          <image class="tag-icon" src="/images/flag.png"></image>
+          <text class="tag-icon">🛍️</text>
           <text class="tag-text">小众市集</text>
         </view>
         <view 
@@ -81,7 +75,7 @@
           bindtap="toggleTag" 
           data-tag="娱乐"
         >
-          <image class="tag-icon" src="/images/flag.png"></image>
+          <text class="tag-icon">🎮</text>
           <text class="tag-text">娱乐</text>
         </view>
       </view>
