@@ -14,7 +14,7 @@ onLoad(){
 }, 
   // 选择图片
   chooseImage() {
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 3 - this.data.imageList.length,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],

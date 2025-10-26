@@ -1,0 +1,108 @@
+/* pages/test_confetti/test_confetti.wxss */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 100rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 32rpx;
+  color: #666;
+}
+
+.status {
+  margin: 40rpx 0;
+  padding: 30rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  width: 80%;
+  text-align: center;
+}
+
+.status-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.test-btn {
+  width: 500rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  background-color: #1989fa;
+  color: #fff;
+  border-radius: 60rpx;
+  box-shadow: 0 6rpx 20rpx rgba(25, 137, 250, 0.3);
+  border: none;
+  margin-bottom: 30rpx;
+}
+
+.test-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.confetti-btn {
+  width: 500rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 60rpx;
+  box-shadow: 0 6rpx 20rpx rgba(7, 193, 96, 0.3);
+  border: none;
+}
+
+.confetti-btn:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+/* 彩带容器样式 */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* 单个彩带样式 */
+.confetti-piece {
+  position: absolute;
+  border-radius: 2rpx;
+  /* 彩带旋转效果 */
+  transform-origin: center center;
+  /* 防止触摸事件干扰 */
+  pointer-events: none;
+}

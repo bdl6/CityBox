@@ -1,25 +1,79 @@
 const app = getApp()
+const MiniConfetti = require('../../utils/confetti');
 Page({
   data: {
     place: null,
-    tags: []
+    tags: [],
+    systemInfo: null,
+    // 存储彩带数据
+    confettiData: [],
+    // 存储彩带动画
+    confettiAnimation: []
   },
+  
+  // 彩带动画实例
+  confettiInstance: null,
 
+  
   onLoad() {
-    // 获取传入的参数
+    const systemInfo = wx.getWindowInfo()
     const place = app.globalData.selectedPOI
     const tags = app.globalData.selectedTags
-    
     this.setData({
+      systemInfo,
       place,
       tags
     });
     
+    // 初始化彩带实例
+    this.confettiInstance = new MiniConfetti(this);
   },
-
+  
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    // 清理资源
+    if (this.confettiInstance) {
+      this.confettiInstance.clear();
+    }
+  },
+  onReady() {
+    // 确保页面渲染完成后再执行动画
+    wx.setEnableDebug({ enableDebug: true })
+    // 页面一打开就飘落彩带
+    setTimeout(() => this.triggerConfetti(), 300)
+  },
+  
+  /**
+   * 触发彩带效果
+   */
+  triggerConfetti: function () {
+    
+    try {
+      // 检查是否已初始化彩带实例
+      if (!this.confettiInstance) {
+        this.confettiInstance = new MiniConfetti(this);
+      }
+      
+      // 添加彩带效果
+      this.confettiInstance.addConfetti({
+        confettiNumber: 150,
+        confettiColors: ['#fcf403', '#62fc03', '#f4fc03', '#03e7fc', '#03fca5', '#a503fc', '#fc03ad', '#fc03c2'],
+        confettiRadius: 4
+      });
+      
+    } catch (error) {
+      console.error('触发彩带效果失败:', error);
+    }
+  },
+ 
+  
+    
+ 
   // 上传照片
   uploadPhoto() {
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1,
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
