@@ -116,6 +116,7 @@ page {
   display: flex;
   flex-wrap: wrap;
   gap: 25rpx;
+  align-items: flex-start;
 }
 
 .upload-btn {
@@ -129,6 +130,7 @@ page {
   justify-content: center;
   background-color: #fafafa;
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .upload-btn:hover {
@@ -147,40 +149,45 @@ page {
   color: #888;
 }
 
-.image-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25rpx;
-}
-
 .image-item {
   width: 140rpx;
   height: 140rpx;
   border-radius: 12rpx;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
 }
 
 .preview-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border-radius: 12rpx;
 }
 
 .delete-btn {
   position: absolute;
-  top: -10rpx;
-  right: -10rpx;
-  width: 36rpx;
-  height: 36rpx;
-  background-color: rgba(0,0,0,0.6);
+  top: -7rpx;
+  right: -7rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background: linear-gradient(135deg, #333, #000);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24rpx;
+  font-size: 20rpx;
   font-weight: bold;
+  z-index: 10;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.4);
+  border: 2rpx solid white;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.6);
 }
 
 /* 描述输入区域 */

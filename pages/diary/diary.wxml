@@ -25,18 +25,19 @@
     <view class="card-content">
       <view class="upload-tip">最多上传3张现场照片</view>
       <view class="upload-container">
-        <view class="upload-btn" bindtap="chooseImage">
+        <!-- 上传按钮，当图片数量小于3时显示 -->
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{imageList.length < 3}}">
           <view class="add-icon">+</view>
           <view class="upload-text">点击上传</view>
         </view>
-        <view class="image-list" wx:if="{{imageList.length > 0}}">
-          <block wx:for="{{imageList}}" wx:key="index">
-            <view class="image-item">
-              <image src="{{item}}" class="preview-image" mode="cover" />
-              <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
-            </view>
-          </block>
-        </view>
+        
+        <!-- 已选择的图片列表 -->
+        <block wx:for="{{imageList}}" wx:key="index">
+          <view class="image-item">
+            <image src="{{item}}" class="preview-image" mode="aspectFill" />
+            <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+          </view>
+        </block>
       </view>
     </view>
   </view>

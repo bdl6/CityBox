@@ -1,83 +1,77 @@
 /* 我的探索页样式 */
 .container {
   min-height: 100vh;
-  background-color: #ffd8cd;
-  padding: 50rpx 40rpx;
+  background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 50%, #ffd4b3 100%);
+  padding: 30rpx 20rpx;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
 /* 顶部标题 */
 .header {
-  padding: 50rpx 30rpx;
+  padding: 40rpx 30rpx;
   text-align: center;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30rpx;
-  box-shadow: 0 15rpx 35rpx rgba(0, 0, 0, 0.1);
-  margin-bottom: 40rpx;
+  background: linear-gradient(135deg, #ff7d00, #ff5e00);
+  border-radius: 25rpx;
+  box-shadow: 0 8rpx 25rpx rgba(255, 125, 0, 0.3);
+  margin-bottom: 30rpx;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10rpx);
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
 
 .header::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 158, 125, 0.15) 0%, transparent 70%);
-  z-index: 0;
-  animation: pulse 8s infinite ease-in-out;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shine 3s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
+@keyframes shine {
+  0% {
+    left: -100%;
   }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
+  100% {
+    left: 100%;
   }
 }
 
 .title {
   display: block;
-  font-size: 48rpx;
-  font-weight: 800;
-  color: #2c3e50;
-  margin-bottom: 20rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15rpx;
   position: relative;
   z-index: 1;
-  letter-spacing: 2rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
-  font-size: 28rpx;
-  color: #FF7D6E;
-  font-weight: 600;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
   position: relative;
   z-index: 1;
 }
 
 /* 记录列表 */
 .content {
-  padding: 0 15rpx;
+  padding: 0 10rpx;
 }
 
 .exploration-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30rpx;
+  background: white;
+  border-radius: 20rpx;
   overflow: hidden;
-  margin-bottom: 40rpx;
-  box-shadow: 0 15rpx 40rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 25rpx;
+  box-shadow: 0 6rpx 20rpx rgba(255, 125, 0, 0.15);
   transition: all 0.3s ease;
   position: relative;
-  backdrop-filter: blur(10rpx);
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border: 2rpx solid #fff2e6;
 }
 
 .exploration-card::before {
@@ -86,18 +80,19 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 8rpx;
-  background: linear-gradient(90deg, #FF9E7D, #FF7D6E);
+  height: 6rpx;
+  background: linear-gradient(90deg, #ff7d00, #ff9500, #ff7d00);
 }
 
 .exploration-card:active {
-  transform: translateY(-3rpx);
-  box-shadow: 0 20rpx 50rpx rgba(0, 0, 0, 0.15);
+  transform: translateY(-2rpx);
+  box-shadow: 0 10rpx 30rpx rgba(255, 125, 0, 0.25);
+  border-color: #ffe0cc;
 }
 
 .card-image {
   width: 100%;
-  height: 280rpx;
+  height: 260rpx;
   position: relative;
   overflow: hidden;
 }
@@ -105,11 +100,11 @@
 .card-image image {
   width: 100%;
   height: 100%;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .exploration-card:active .card-image image {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .card-image::after {
@@ -118,53 +113,53 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 80rpx;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  height: 60rpx;
+  background: linear-gradient(to top, rgba(255, 125, 0, 0.3), transparent);
 }
 
 .card-content {
-  padding: 30rpx;
+  padding: 25rpx;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 15rpx;
 }
 
 .card-title {
-  font-size: 36rpx;
-  font-weight: 700;
-  color: #2c3e50;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
   flex: 1;
-  margin-right: 20rpx;
-  line-height: 1.4;
+  margin-right: 15rpx;
+  line-height: 1.3;
 }
 
 .card-distance {
-  font-size: 24rpx;
-  color: #FF7D6E;
-  background: linear-gradient(45deg, #fff1e6, #ffe6e6);
-  padding: 8rpx 20rpx;
-  border-radius: 25rpx;
+  font-size: 22rpx;
+  color: white;
+  background: linear-gradient(45deg, #ff7d00, #ff5e00);
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
   font-weight: 600;
-  box-shadow: 0 4rpx 12rpx rgba(255, 158, 125, 0.15);
+  box-shadow: 0 3rpx 8rpx rgba(255, 125, 0, 0.3);
 }
 
 .card-date {
   display: block;
-  font-size: 24rpx;
-  color: #7f8c8d;
-  margin-bottom: 20rpx;
-  font-weight: 500;
+  font-size: 22rpx;
+  color: #999;
+  margin-bottom: 15rpx;
+  font-weight: 400;
 }
 
 .card-description {
-  font-size: 28rpx;
-  color: #5a6c7d;
-  line-height: 1.6;
-  margin-bottom: 25rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -174,105 +169,95 @@
 .tags-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 15rpx;
+  gap: 12rpx;
 }
 
 .tag {
-  font-size: 22rpx;
-  color: #FF7D6E;
-  background: linear-gradient(45deg, #fff1e6, #ffe6e6);
-  padding: 8rpx 20rpx;
-  border-radius: 25rpx;
-  font-weight: 600;
-  box-shadow: 0 4rpx 12rpx rgba(255, 125, 110, 0.15);
+  font-size: 20rpx;
+  color: #ff7d00;
+  background: #fff5f0;
+  padding: 6rpx 16rpx;
+  border-radius: 18rpx;
+  font-weight: 500;
+  border: 1rpx solid #ffe0cc;
 }
 
 /* 空状态 */
 .empty-state {
-  position:absolute;
-  top:-20vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80rpx 40rpx;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 30rpx;
-  box-shadow: 0 15rpx 40rpx rgba(0, 0, 0, 0.1);
-  margin-top: 50rpx;
+  padding: 60rpx 30rpx;
+  background: white;
+  border-radius: 20rpx;
+  box-shadow: 0 6rpx 20rpx rgba(255, 125, 0, 0.15);
+  margin-top: 40rpx;
   text-align: center;
-  backdrop-filter: blur(10rpx);
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border: 2rpx solid #fff2e6;
   position: relative;
-  overflow: hidden;
 }
 
 .empty-state::before {
   content: "";
   position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 125, 110, 0.1) 0%, transparent 70%);
-  z-index: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rpx;
+  background: linear-gradient(90deg, #ff7d00, #ff9500, #ff7d00);
 }
 
 .empty-icon {
-  width: 200rpx;
-  height: 200rpx;
-  margin-bottom: 50rpx;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
-  animation: float 3s ease-in-out infinite;
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.8;
+  animation: bounce 2s ease-in-out infinite;
 }
 
-@keyframes float {
+@keyframes bounce {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20rpx);
+    transform: translateY(-10rpx);
   }
 }
 
 .empty-text {
-  font-size: 40rpx;
-  font-weight: 800;
-  color: #2c3e50;
-  margin-bottom: 25rpx;
-  position: relative;
-  z-index: 1;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15rpx;
 }
 
 .empty-subtext {
-  font-size: 30rpx;
-  color: #7f8c8d;
-  margin-bottom: 60rpx;
-  line-height: 1.6;
-  padding: 0 40rpx;
-  position: relative;
-  z-index: 1;
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 40rpx;
+  line-height: 1.5;
+  padding: 0 20rpx;
 }
 
 .explore-btn {
-  width: 75%;
-  background: linear-gradient(45deg, #FF9E7D, #FF7D6E);
+  width: 70%;
+  background: linear-gradient(135deg, #ff7d00, #ff5e00);
   color: white;
-  border-radius: 60rpx;
-  font-size: 36rpx;
-  font-weight: 700;
-  padding: 30rpx 0;
-  box-shadow: 0 15rpx 30rpx rgba(255, 158, 125, 0.35);
+  border-radius: 50rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  padding: 25rpx 0;
+  box-shadow: 0 8rpx 20rpx rgba(255, 125, 0, 0.3);
   border: none;
   transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  letter-spacing: 2rpx;
+}
+
+.explore-btn::after {
+  border: none;
 }
 
 .explore-btn:active {
-  transform: translateY(-3rpx);
-  box-shadow: 0 20rpx 40rpx rgba(255, 158, 125, 0.45);
+  transform: translateY(-2rpx);
+  box-shadow: 0 12rpx 25rpx rgba(255, 125, 0, 0.4);
 }

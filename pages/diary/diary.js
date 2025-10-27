@@ -3,24 +3,52 @@ Page({
   data: {
     imageList: [],
     desc: '',
-    title:'',
+    title: '',
     descLength: 0
   },
-onLoad(){
-  const title = app.globalData.selectedPOI.title
-  this.setData({
-    title
-  })
-}, 
+  onLoad() {
+    const title = app.globalData.selectedPOI.title
+    this.setData({
+      title
+    })
+  },
   // 选择图片
   chooseImage() {
     wx.chooseMedia({
       count: 3 - this.data.imageList.length,
+      mediaType: ['image'],
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: (res) => {
-        this.setData({
-          imageList: this.data.imageList.concat(res.tempFilePaths)
+        console.log('完整返回数据:', res); // 调试日志
+
+        // 处理返回的图片数据
+        let imagePaths = [];
+        if (res.tempFiles && res.tempFiles.length > 0) {
+          // 新版本 API 返回 tempFiles 数组
+          imagePaths = res.tempFiles.map(file => file.tempFilePath);
+          console.log('从 tempFiles 获取路径:', imagePaths);
+        } else if (res.tempFilePaths && res.tempFilePaths.length > 0) {
+          // 兼容旧版本 API
+          imagePaths = res.tempFilePaths;
+          console.log('从 tempFilePaths 获取路径:', imagePaths);
+        }
+
+        if (imagePaths.length > 0) {
+          this.setData({
+            imageList: this.data.imageList.concat(imagePaths)
+          }, () => {
+            console.log('当前图片列表:', this.data.imageList);
+          });
+        } else {
+          console.warn('未获取到有效的图片路径');
+        }
+      },
+      fail: (err) => {
+        console.error('选择图片失败:', err);
+        wx.showToast({
+          title: '选择图片失败',
+          icon: 'none'
         });
       }
     });
@@ -50,7 +78,7 @@ onLoad(){
       });
       return;
     }
-    if (this.data.desc.length < 10 || this.data.desc.length > 200) {
+    if (this.data.desc.length < 1 || this.data.desc.length > 200) {
       wx.showToast({
         title: '请输入10-200字的感受',
         icon: 'none'

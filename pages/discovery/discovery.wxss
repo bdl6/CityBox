@@ -2,7 +2,10 @@
 .container {
   height: 100vh;
   display: flex;
+  background-color: #f8f8f8;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
@@ -26,55 +29,211 @@
   pointer-events: none;
 }
 
+/* 礼物盒容器 */
+.gift-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
 
+/* 礼物盒 */
+.gift-box {
+  width: 400rpx;
+  height: 400rpx;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gift-box:active {
+  transform: scale(0.95);
+}
+
+/* 礼物盒盖 */
+.gift-lid {
+  width: 100%;
+  height: 60rpx;
+  background-color: #e91e63;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10rpx;
+  z-index: 2;
+  box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 礼物盒身 */
+.gift-body {
+  width: 100%;
+  height: 340rpx;
+  background-color: #c2185b;
+  position: absolute;
+  top: 60rpx;
+  left: 0;
+  border-radius: 0 0 10rpx 10rpx;
+  z-index: 1;
+  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.2);
+}
+
+/* 丝带 */
+.gift-ribbon {
+  width: 40rpx;
+  height: 100%;
+  background-color: #ffc107;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 丝带交叉 */
+.gift-ribbon-cross {
+  width: 100%;
+  height: 40rpx;
+  background-color: #ffc107;
+  position: absolute;
+  top: 40%;
+  left: 0;
+}
+
+/* 礼物盒提示文字 */
+.gift-hint {
+  position: absolute;
+  bottom: -60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28rpx;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* 礼物盒打开动画 */
+.gift-open {
+  animation: giftOpen 0.8s ease-out forwards;
+}
+
+@keyframes giftOpen {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 
 /* 地点信息区 */
 .info-section {
-  padding: 30rpx;
   background-color: #fff;
+  transition: all 0.8s ease;
+  border-radius: 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top:15vh;
+  left: 0vh;
+}
+
+/* 信息区域隐藏状态 */
+.info-hidden {
+  opacity: 0;
+  transform: translateY(50rpx);
+  height: 0;
+  padding: 0;
+  margin: 0 20rpx;
+  overflow: hidden;
+}
+
+/* 信息区域显示状态 */
+.info-visible {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  padding: 0;
+  margin: 20rpx;
+}
+
+/* 地点信息头部 */
+.place-header {
+  background: linear-gradient(135deg, #83d3a3 0%, #3ae791 100%);
+  padding: 40rpx;
+  color: white;
+  border-radius: 20rpx 20rpx 0 0 ;
+
 }
 
 .place-name {
   display: block;
-  font-size: 36rpx;
+  font-size: 44rpx;
   font-weight: bold;
-  color: #333;
   margin-bottom: 20rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
 }
 
 .place-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 15rpx;
-  margin-bottom: 20rpx;
 }
 
 .tag {
-  background-color: #f0f0f0;
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20rpx;
-  padding: 5rpx 20rpx;
-  font-size: 24rpx;
-  color: #666;
-  /* 移除原来的inline-block和margin-right */
-  /* 添加flex布局下的样式 */
+  padding: 8rpx 24rpx;
+  font-size: 26rpx;
+  color: white;
   white-space: nowrap;
+  backdrop-filter: blur(10rpx);
+}
+
+/* 地点信息内容 */
+.place-content {
+  padding: 20rpx;
+  margin-bottom: 30rpx;
+  display: flex;
 }
 
 .place-description {
-  font-size: 28rpx;
-  color: #666;
-  line-height: 1.5;
+  justify-content: center;
+  align-items:center;
+  font-size: 30rpx;
+  color: #555;
+  line-height: 1.7;
+  padding: 30rpx;
+  border-radius: 20rpx;
 }
 
 
 /* 底部操作区 */
 .footer-section {
   padding: 30rpx;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.8s ease 0.3s; /* 添加延迟，在信息区域显示后再显示 */
 }
+
+/* 底部区域隐藏状态 */
+.footer-hidden {
+  opacity: 0;
+  transform: translateY(50rpx);
+  height: 0;
+  padding: 0 30rpx;
+  overflow: hidden;
+}
+
+/* 底部区域显示状态 */
+.footer-visible {
+  opacity: 1;
+  transform: translateY(0);
+  height: auto;
+  padding: 30rpx;
+}
+
 
 .diary-btn {
   width: 80%;

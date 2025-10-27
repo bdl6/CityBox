@@ -12,21 +12,37 @@
     ></view>
   </view> 
 
-  <!-- 地点信息区 -->
-  <view class="info-section">
-    <text class="place-name">{{place.title || '街角旧书店'}}</text>
-    <view class="place-tags">
-      <text class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</text>
+  <!-- 礼物盒元素 -->
+  <view class="gift-container" bindtap="openGift" wx:if="!isGiftOpened">
+    <view class="gift-box {{giftAnimation}}">
+      <view class="gift-lid"></view>
+      <view class="gift-body">
+        <view class="gift-ribbon"></view>
+        <view class="gift-ribbon-cross"></view>
+      </view>
+      <view class="gift-hint">点击打开盲盒</view>
     </view>
-    <text class="place-description">
-      {{place.address || '藏在老巷子里的二手书店，老板会泡手冲咖啡，周末有读书会。这里有着浓厚的文艺氛围，是城市中难得的宁静角落。'}}
-    </text>
   </view>
 
+  <!-- 地点信息区 - 点击礼物盒后显示 -->
+  <view class="info-section {{isGiftOpened ? 'info-visible' : 'info-hidden'}}">
+    <!-- 地点信息头部 -->
+    <view class="place-header">
+      <text class="place-name">{{place.title || '街角旧书店'}}</text>
+      <view class="place-tags">
+        <text class="tag" wx:for="{{tags}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+    <!-- 地点信息内容 -->
+    <view class="place-content">
+      <text class="place-description">
+        {{place.address || '藏在老巷子里的二手书店，老板会泡手冲咖啡，周末有读书会。这里有着浓厚的文艺氛围，是城市中难得的宁静角落。'}}
+      </text>
+    </view>
+  </view>
 
-
-  <!-- 底部操作区 -->
-  <view class="footer-section">
+  <!-- 底部操作区 - 点击礼物盒后显示 -->
+  <view class="footer-section {{isGiftOpened ? 'footer-visible' : 'footer-hidden'}}">
     <button class="diary-btn" bindtap="writeDiary">写探索日记</button>
     <text class="hint-text">分享你的发现，帮更多人找到这里</text>
   </view>

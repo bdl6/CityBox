@@ -8,7 +8,11 @@ Page({
     // 存储彩带数据
     confettiData: [],
     // 存储彩带动画
-    confettiAnimation: []
+    confettiAnimation: [],
+    // 礼物盒状态
+    isGiftOpened: false,
+    // 礼物盒动画
+    giftAnimation: ''
   },
   
   // 彩带动画实例
@@ -41,8 +45,27 @@ Page({
   onReady() {
     // 确保页面渲染完成后再执行动画
     wx.setEnableDebug({ enableDebug: true })
-    // 页面一打开就飘落彩带
-    setTimeout(() => this.triggerConfetti(), 300)
+  },
+
+  /**
+   * 打开礼物盒
+   */
+  openGift() {
+    // 设置礼物盒打开动画
+    this.setData({
+      giftAnimation: 'gift-open'
+    });
+
+    // 延迟后显示地点信息并触发彩带效果
+    setTimeout(() => {
+      // 显示地点信息
+      this.setData({
+        isGiftOpened: true
+      });
+
+      // 触发彩带效果
+      this.triggerConfetti();
+    }, 800); // 等待礼物盒动画完成
   },
   
   /**
