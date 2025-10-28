@@ -36,77 +36,193 @@
   justify-content: center;
   align-items: center;
   padding: 40rpx;
+  perspective: 1000rpx;
 }
 
 /* 礼物盒 */
 .gift-box {
-  width: 400rpx;
-  height: 400rpx;
+  width: 320rpx;
+  height: 320rpx;
   position: relative;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-15rpx) rotateY(5deg);
+  }
 }
 
 .gift-box:active {
-  transform: scale(0.95);
+  transform: scale(0.95) rotateY(10deg);
 }
 
 /* 礼物盒盖 */
 .gift-lid {
   width: 100%;
-  height: 60rpx;
-  background-color: #e91e63;
+  height: 80rpx;
+  background: linear-gradient(135deg, #ff6b35, #ff4757);
   position: absolute;
-  top: 0;
+  top: -10rpx;
   left: 0;
-  border-radius: 10rpx;
-  z-index: 2;
-  box-shadow: 0 5rpx 10rpx rgba(0, 0, 0, 0.1);
+  border-radius: 15rpx 15rpx 8rpx 8rpx;
+  z-index: 3;
+  box-shadow: 
+    0 8rpx 20rpx rgba(255, 71, 87, 0.4),
+    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.3),
+    inset 0 -2rpx 4rpx rgba(0, 0, 0, 0.2);
+  border: 2rpx solid #ff3742;
+}
+
+.gift-lid::before {
+  content: "";
+  position: absolute;
+  top: 8rpx;
+  left: 8rpx;
+  right: 8rpx;
+  height: 20rpx;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent, rgba(255, 255, 255, 0.4));
+  border-radius: 8rpx;
 }
 
 /* 礼物盒身 */
 .gift-body {
   width: 100%;
-  height: 340rpx;
-  background-color: #c2185b;
+  height: 280rpx;
+  background: linear-gradient(135deg, #ff4757, #c44569);
   position: absolute;
-  top: 60rpx;
+  top: 70rpx;
   left: 0;
-  border-radius: 0 0 10rpx 10rpx;
-  z-index: 1;
-  box-shadow: 0 5rpx 15rpx rgba(0, 0, 0, 0.2);
+  border-radius: 8rpx 8rpx 15rpx 15rpx;
+  z-index: 2;
+  box-shadow: 
+    0 15rpx 30rpx rgba(196, 69, 105, 0.4),
+    inset 0 4rpx 8rpx rgba(255, 255, 255, 0.2),
+    inset 0 -4rpx 8rpx rgba(0, 0, 0, 0.3);
+  border: 2rpx solid #c44569;
 }
 
-/* 丝带 */
-.gift-ribbon {
-  width: 40rpx;
-  height: 100%;
-  background-color: #ffc107;
+.gift-body::before {
+  content: "";
   position: absolute;
-  top: 0;
+  top: 15rpx;
+  left: 15rpx;
+  right: 15rpx;
+  height: 30rpx;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent, rgba(255, 255, 255, 0.3));
+  border-radius: 8rpx;
+}
+
+/* 主丝带 - 垂直 */
+.gift-ribbon {
+  width: 50rpx;
+  height: 100%;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 50%, #ff8f00 100%);
+  position: absolute;
+  top: -10rpx;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 4;
+  border-radius: 10rpx;
+  box-shadow: 
+    0 6rpx 18rpx rgba(255, 193, 7, 0.5),
+    inset 0 3rpx 6rpx rgba(255, 255, 255, 0.7),
+    inset 0 -3rpx 6rpx rgba(255, 143, 0, 0.8),
+    inset 3rpx 0 6rpx rgba(255, 143, 0, 0.3),
+    inset -3rpx 0 6rpx rgba(255, 143, 0, 0.3);
+  border: 2rpx solid #ff8f00;
 }
 
-/* 丝带交叉 */
-.gift-ribbon-cross {
-  width: 100%;
-  height: 40rpx;
-  background-color: #ffc107;
+.gift-ribbon::before {
+  content: "";
   position: absolute;
-  top: 40%;
-  left: 0;
+  top: 15rpx;
+  left: 12rpx;
+  right: 12rpx;
+  height: 20rpx;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9));
+  border-radius: 6rpx;
+}
+
+/* 丝带交叉 - 水平 */
+.gift-ribbon-cross {
+  width: 98%;
+  height: 50rpx;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 50%, #ff8f00 100%);
+  position: absolute;
+  top: 45%;
+  left: 1%;
+  z-index: 4;
+  border-radius: 10rpx;
+  box-shadow: 
+    0 6rpx 18rpx rgba(255, 193, 7, 0.5),
+    inset 0 3rpx 6rpx rgba(255, 255, 255, 0.7),
+    inset 0 -3rpx 6rpx rgba(255, 143, 0, 0.8),
+    inset 0 3rpx 6rpx rgba(255, 143, 0, 0.3),
+    inset 0 -3rpx 6rpx rgba(255, 143, 0, 0.3);
+  border: 2rpx solid #ff8f00;
+}
+
+.gift-ribbon-cross::before {
+  content: "";
+  position: absolute;
+  top: 10rpx;
+  left: 15rpx;
+  right: 15rpx;
+  height: 18rpx;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.9));
+  border-radius: 5rpx;
+}
+
+/* 蝴蝶结 */
+.gift-ribbon::after {
+  content: "";
+  position: absolute;
+  top: -25rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75rpx;
+  height: 38rpx;
+  background: linear-gradient(135deg, #ffeb3b 0%, #ffc107 30%, #ff8f00 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: 
+    0 6rpx 15rpx rgba(255, 193, 7, 0.6),
+    inset 0 2rpx 5rpx rgba(255, 255, 255, 0.8),
+    inset 0 -2rpx 4rpx rgba(255, 143, 0, 0.9);
+  border: 2rpx solid #ff8f00;
 }
 
 /* 礼物盒提示文字 */
 .gift-hint {
   position: absolute;
-  bottom: -60rpx;
+  bottom: -100rpx;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #666;
   white-space: nowrap;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 12rpx 24rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05);
+  }
 }
 
 /* 礼物盒打开动画 */
@@ -134,27 +250,28 @@
   border-radius: 30rpx;
   box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.2);
   position: absolute;
-  top:15vh;
-  left: 0vh;
+  top: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600rpx;
 }
 
 /* 信息区域隐藏状态 */
 .info-hidden {
   opacity: 0;
-  transform: translateY(50rpx);
+  transform: translateX(-50%) translateY(50rpx);
   height: 0;
   padding: 0;
-  margin: 0 20rpx;
   overflow: hidden;
 }
 
 /* 信息区域显示状态 */
 .info-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   height: auto;
   padding: 0;
-  margin: 20rpx;
 }
 
 /* 地点信息头部 */
@@ -162,8 +279,29 @@
   background: linear-gradient(135deg, #83d3a3 0%, #3ae791 100%);
   padding: 40rpx;
   color: white;
-  border-radius: 20rpx 20rpx 0 0 ;
+  border-radius: 20rpx 20rpx 0 0;
+  position: relative;
+  overflow: hidden;
+}
 
+.place-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: headerShine 1.5s infinite;
+}
+
+@keyframes headerShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .place-name {
@@ -172,12 +310,16 @@
   font-weight: bold;
   margin-bottom: 20rpx;
   text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .place-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 15rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .tag {
@@ -188,6 +330,34 @@
   color: white;
   white-space: nowrap;
   backdrop-filter: blur(10rpx);
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.tag:nth-child(odd) {
+  animation: tagFloat1 4s ease-in-out infinite;
+}
+
+.tag:nth-child(even) {
+  animation: tagFloat2 4s ease-in-out infinite 0.5s;
+}
+
+@keyframes tagFloat1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3rpx);
+  }
+}
+
+@keyframes tagFloat2 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5rpx);
+  }
 }
 
 /* 地点信息内容 */
@@ -234,15 +404,19 @@
   padding: 30rpx;
 }
 
-
 .diary-btn {
   width: 80%;
+  height: 100rpx;
   background-color: #4caf50;
   color: white;
   border-radius: 50rpx;
   font-size: 32rpx;
   font-weight: bold;
   margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hint-text {

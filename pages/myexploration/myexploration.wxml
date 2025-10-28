@@ -1,5 +1,10 @@
 <!-- 我的探索页 -->
 <view class="container">
+  <!-- 清空按钮 - 屏幕右上角 -->
+  <view class="clear-btn-fixed" bindtap="clearAllExplorations" wx:if="{{explorations.length > 0}}">
+    <text class="clear-text">🗑️</text>
+  </view>
+
   <!-- 顶部标题 -->
   <view class="header">
     <text class="title">我的探索日记</text>
@@ -12,10 +17,26 @@
       class="exploration-card" 
       wx:for="{{explorations}}" 
       wx:key="id"
-      bindtap="goToDiscovery"
       data-id="{{item.id}}"
     >
-      <image class="card-image" src="{{item.image}}" mode="aspectFill"></image>
+      <!-- 轮播图 -->
+      <view class="swiper-container" wx:if="{{item.images && item.images.length > 0}}">
+        <swiper class="card-swiper" 
+                indicator-dots="{{item.images.length > 1}}" 
+                indicator-color="rgba(255,255,255,0.5)" 
+                indicator-active-color="#ff7d00"
+                autoplay="{{false}}"
+                circular="{{item.images.length > 1}}">
+          <swiper-item wx:for="{{item.images}}" wx:key="index" wx:for-item="imageUrl">
+            <image class="card-image" src="{{imageUrl}}" mode="aspectFill"></image>
+          </swiper-item>
+        </swiper>
+      </view>
+      
+      <!-- 占位符 -->
+      <view class="card-image placeholder" wx:else>
+        <text class="placeholder-text">📷</text>
+      </view>
       <view class="card-content">
         <view class="card-header">
           <text class="card-title">{{item.name}}</text>
@@ -32,9 +53,9 @@
 
   <!-- 空状态 -->
   <view class="empty-state" wx:else>
-    <image class="empty-icon" src="/images/cry-face.png"></image>
+    <view class="empty-icon">😿</view>
     <text class="empty-text">还没有探索记录哦</text>
     <text class="empty-subtext">开始你的第一次探索之旅，发现身边的宝藏地点</text>
-    <button class="explore-btn" bindtap="goToHome">去探索</button>
+    <button class="explore-btn" bindtap="goHome">去探索</button>
   </view>
 </view>
